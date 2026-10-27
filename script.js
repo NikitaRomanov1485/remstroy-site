@@ -5,8 +5,8 @@ function scrollToTop() {
 
 // ============ МАСКА ТЕЛЕФОНА ============
 function initPhoneMask(input) {
-  const PREFIX = '+375 ';
-  const PREFIX_LEN = PREFIX.length;
+  var PREFIX = '+375 ';
+  var PREFIX_LEN = PREFIX.length;
 
   input.addEventListener('focus', function() {
     if (!this.value || this.value.length < PREFIX_LEN) {
@@ -15,11 +15,13 @@ function initPhoneMask(input) {
   });
 
   input.addEventListener('input', function() {
-    let digits = this.value.replace(/\D/g, '');
-    if (digits.startsWith('375')) digits = digits.slice(3);
+    var digits = this.value.replace(/\D/g, '');
+    if (digits.startsWith('375')) {
+      digits = digits.slice(3);
+    }
     digits = digits.slice(0, 9);
 
-    let formatted = PREFIX;
+    var formatted = PREFIX;
     if (digits.length > 0) formatted += digits.slice(0, 2);
     if (digits.length > 2) formatted += ' ' + digits.slice(2, 5);
     if (digits.length > 5) formatted += '-' + digits.slice(5, 7);
@@ -37,14 +39,17 @@ function initPhoneMask(input) {
   });
 }
 
-document.querySelectorAll('input[type="tel"]').forEach(initPhoneMask);
+var telInputs = document.querySelectorAll('input[type="tel"]');
+for (var i = 0; i < telInputs.length; i++) {
+  initPhoneMask(telInputs[i]);
+}
 
-// ============ АНИМАЦИЯ ПОЯВЛЕНИЯ (REVEAL) ============
-const revealElements = document.querySelectorAll('.reveal');
+// ============ АНИМАЦИЯ ПОЯВЛЕНИЯ ============
+var revealElements = document.querySelectorAll('.reveal');
 
 if ('IntersectionObserver' in window) {
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
       if (entry.isIntersecting) {
         entry.target.classList.add('visible');
         observer.unobserve(entry.target);
@@ -55,26 +60,30 @@ if ('IntersectionObserver' in window) {
     rootMargin: '0px 0px -40px 0px'
   });
 
-  revealElements.forEach(el => observer.observe(el));
+  revealElements.forEach(function(el) {
+    observer.observe(el);
+  });
 
-  setTimeout(() => {
-    revealElements.forEach(el => {
-      const rect = el.getBoundingClientRect();
+  setTimeout(function() {
+    revealElements.forEach(function(el) {
+      var rect = el.getBoundingClientRect();
       if (rect.top < window.innerHeight && !el.classList.contains('visible')) {
         el.classList.add('visible');
       }
     });
   }, 1200);
 } else {
-  revealElements.forEach(el => el.classList.add('visible'));
+  revealElements.forEach(function(el) {
+    el.classList.add('visible');
+  });
 }
 
 // ============ ПЛАВАЮЩИЕ КНОПКИ ============
-const floatButtons = document.getElementById('floatButtons');
-const upBtn = document.getElementById('upBtn');
+var floatButtons = document.getElementById('floatButtons');
+var upBtn = document.getElementById('upBtn');
 
 function handleScroll() {
-  const scrolled = window.scrollY;
+  var scrolled = window.scrollY;
 
   if (floatButtons) {
     if (scrolled > 300) {
@@ -97,8 +106,8 @@ window.addEventListener('scroll', handleScroll, { passive: true });
 if (floatButtons) handleScroll();
 
 // ============ ОТПРАВКА В TELEGRAM ============
-const TG_TOKEN = '8979084313:AAH5LtdHYApK1mO-VWrUQhkbAtniUHkED_Y';
-const TG_CHAT_ID = '7310945290';
+var TG_TOKEN = '8979084313:AAH5LtdHYApK1mO-VWrUQhkbAtniUHkED_Y';
+var TG_CHAT_ID = '7310945290';
 
 function escapeHtml(str) {
   if (!str) return '';
@@ -109,16 +118,16 @@ function escapeHtml(str) {
 }
 
 async function sendToTelegram(name, phone, task) {
-  const text =
+  var text =
     '🔔 <b>Новая заявка с сайта</b>\n\n' +
     '👤 <b>Имя:</b> ' + escapeHtml(name) + '\n' +
     '📞 <b>Телефон:</b> ' + escapeHtml(phone) + '\n' +
     '📝 <b>Задача:</b> ' + escapeHtml(task || 'не указана') + '\n\n' +
     '🕐 ' + new Date().toLocaleString('ru-RU');
 
-  const url = 'https://api.telegram.org/bot' + TG_TOKEN + '/sendMessage';
+  var url = 'https://api.telegram.org/bot' + TG_TOKEN + '/sendMessage';
 
-  const response = await fetch(url, {
+  var response = await fetch(url, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
@@ -134,11 +143,11 @@ async function sendToTelegram(name, phone, task) {
 // ============ ОСНОВНАЯ ФОРМА ============
 async function submitMainForm(e) {
   e.preventDefault();
-  const form = e.target;
-  const btn = document.getElementById('mainSubmit');
-  const name = form.name.value.trim();
-  const phone = form.tel.value.trim();
-  const task = form.task.value.trim();
+  var form = e.target;
+  var btn = document.getElementById('mainSubmit');
+  var name = form.name.value.trim();
+  var phone = form.tel.value.trim();
+  var task = form.task.value.trim();
 
   if (phone.replace(/\D/g, '').length < 12) {
     alert('Пожалуйста, введите полный номер телефона');
@@ -149,12 +158,12 @@ async function submitMainForm(e) {
   btn.textContent = 'Отправка...';
 
   try {
-    const ok = await sendToTelegram(name, phone, task);
+    var ok = await sendToTelegram(name, phone, task);
     if (ok) {
       btn.textContent = '✓ Отправлено';
       form.reset();
       form.tel.value = '+375 ';
-      setTimeout(() => {
+      setTimeout(function() {
         btn.disabled = false;
         btn.textContent = 'Отправить заявку';
       }, 3000);
@@ -164,16 +173,16 @@ async function submitMainForm(e) {
   } catch (err) {
     btn.textContent = 'Ошибка. Попробуйте ещё раз';
     btn.disabled = false;
-    setTimeout(() => {
+    setTimeout(function() {
       btn.textContent = 'Отправить заявку';
     }, 3000);
   }
 }
 
 // ============ МОДАЛКА ЗАЯВКИ ============
-const overlay = document.getElementById('modalOverlay');
-const formView = document.getElementById('modalForm');
-const successView = document.getElementById('modalSuccess');
+var overlay = document.getElementById('modalOverlay');
+var formView = document.getElementById('modalForm');
+var successView = document.getElementById('modalSuccess');
 
 function openModal() {
   if (!overlay) return;
@@ -191,11 +200,11 @@ function closeModal() {
 
 async function submitModal(e) {
   e.preventDefault();
-  const form = e.target;
-  const btn = document.getElementById('modalSubmit');
-  const name = form.name.value.trim();
-  const phone = form.tel.value.trim();
-  const task = form.task.value.trim();
+  var form = e.target;
+  var btn = document.getElementById('modalSubmit');
+  var name = form.name.value.trim();
+  var phone = form.tel.value.trim();
+  var task = form.task.value.trim();
 
   if (phone.replace(/\D/g, '').length < 12) {
     alert('Пожалуйста, введите полный номер телефона');
@@ -206,13 +215,13 @@ async function submitModal(e) {
   btn.textContent = 'Отправка...';
 
   try {
-    const ok = await sendToTelegram(name, phone, task);
+    var ok = await sendToTelegram(name, phone, task);
     if (ok) {
       if (formView) formView.classList.add('hide');
       if (successView) successView.classList.add('show');
       form.reset();
       form.tel.value = '+375 ';
-      setTimeout(() => {
+      setTimeout(function() {
         closeModal();
         btn.disabled = false;
         btn.textContent = 'Отправить заявку';
@@ -223,30 +232,30 @@ async function submitModal(e) {
   } catch (err) {
     btn.textContent = 'Ошибка. Попробуйте ещё раз';
     btn.disabled = false;
-    setTimeout(() => {
+    setTimeout(function() {
       btn.textContent = 'Отправить заявку';
     }, 3000);
   }
 }
 
-document.addEventListener('keydown', (e) => {
+document.addEventListener('keydown', function(e) {
   if (e.key === 'Escape' && overlay && overlay.classList.contains('active')) closeModal();
 });
 
 // ============ МОДАЛКА ОТЗЫВА ============
-const reviewOverlay = document.getElementById('reviewOverlay');
-const reviewFormView = document.getElementById('reviewFormView');
-const reviewSuccess = document.getElementById('reviewSuccess');
-const openReviewBtn = document.getElementById('openReviewBtn');
-const reviewFormEl = document.getElementById('reviewFormEl');
-const reviewSubmit = document.getElementById('reviewSubmit');
-const reviewPhotos = document.getElementById('review-photos');
-const filePreview = document.getElementById('filePreview');
-const fileUploadInfo = document.getElementById('fileUploadInfo');
-const starButtons = document.querySelectorAll('.star');
-const reviewRating = document.getElementById('review-rating');
+var reviewOverlay = document.getElementById('reviewOverlay');
+var reviewFormView = document.getElementById('reviewFormView');
+var reviewSuccess = document.getElementById('reviewSuccess');
+var openReviewBtn = document.getElementById('openReviewBtn');
+var reviewFormEl = document.getElementById('reviewFormEl');
+var reviewSubmit = document.getElementById('reviewSubmit');
+var reviewPhotos = document.getElementById('review-photos');
+var filePreview = document.getElementById('filePreview');
+var fileUploadInfo = document.getElementById('fileUploadInfo');
+var starButtons = document.querySelectorAll('.star');
+var reviewRating = document.getElementById('review-rating');
 
-let selectedPhotos = [];
+var selectedPhotos = [];
 
 function openReviewModal() {
   if (!reviewOverlay) return;
@@ -266,7 +275,7 @@ if (openReviewBtn) {
   openReviewBtn.addEventListener('click', openReviewModal);
 }
 
-document.addEventListener('keydown', (e) => {
+document.addEventListener('keydown', function(e) {
   if (e.key === 'Escape' && reviewOverlay && reviewOverlay.classList.contains('active')) {
     closeReviewModal();
   }
@@ -274,11 +283,11 @@ document.addEventListener('keydown', (e) => {
 
 // Логика звезд
 if (starButtons.length > 0) {
-  for (let s = 0; s < starButtons.length; s++) {
+  for (var s = 0; s < starButtons.length; s++) {
     starButtons[s].addEventListener('click', function() {
-      const value = parseInt(this.getAttribute('data-value'));
+      var value = parseInt(this.getAttribute('data-value'));
       if (reviewRating) reviewRating.value = value;
-      for (let i = 0; i < starButtons.length; i++) {
+      for (var i = 0; i < starButtons.length; i++) {
         if (parseInt(starButtons[i].getAttribute('data-value')) <= value) {
           starButtons[i].classList.add('active');
         } else {
@@ -293,17 +302,17 @@ if (starButtons.length > 0) {
 function renderPhotoPreviews() {
   if (!filePreview) return;
   filePreview.innerHTML = '';
-  for (let i = 0; i < selectedPhotos.length; i++) {
+  for (var i = 0; i < selectedPhotos.length; i++) {
     (function(index) {
-      const file = selectedPhotos[index];
-      const item = document.createElement('div');
+      var file = selectedPhotos[index];
+      var item = document.createElement('div');
       item.className = 'file-preview-item';
 
-      const img = document.createElement('img');
+      var img = document.createElement('img');
       img.src = URL.createObjectURL(file);
       item.appendChild(img);
 
-      const removeBtn = document.createElement('button');
+      var removeBtn = document.createElement('button');
       removeBtn.type = 'button';
       removeBtn.className = 'file-preview-remove';
       removeBtn.innerHTML = '×';
@@ -327,8 +336,8 @@ function renderPhotoPreviews() {
 
 if (reviewPhotos) {
   reviewPhotos.addEventListener('change', function() {
-    const files = this.files;
-    for (let i = 0; i < files.length; i++) {
+    var files = this.files;
+    for (var i = 0; i < files.length; i++) {
       if (selectedPhotos.length >= 3) {
         alert('Можно прикрепить не более 3 фото');
         break;
@@ -346,11 +355,11 @@ if (reviewPhotos) {
 
 // Отправка отзыва
 async function sendReviewToTelegram(name, rating, text, photos) {
-  let stars = '';
-  for (let i = 0; i < rating; i++) stars += '★';
-  for (let j = rating; j < 5; j++) stars += '☆';
+  var stars = '';
+  for (var i = 0; i < rating; i++) stars += '★';
+  for (var j = rating; j < 5; j++) stars += '☆';
 
-  const messageText =
+  var messageText =
     '📝 НОВЫЙ ОТЗЫВ С САЙТА\n\n' +
     '👤 Имя: ' + name + '\n' +
     '⭐ Оценка: ' + stars + ' (' + rating + '/5)\n' +
@@ -358,10 +367,10 @@ async function sendReviewToTelegram(name, rating, text, photos) {
     '🖼 Фото: ' + (photos.length > 0 ? photos.length + ' шт.' : 'без фото') + '\n' +
     '🕐 ' + new Date().toLocaleString('ru-RU');
 
-  const textUrl = 'https://api.telegram.org/bot' + TG_TOKEN + '/sendMessage';
+  var textUrl = 'https://api.telegram.org/bot' + TG_TOKEN + '/sendMessage';
 
   try {
-    const textResponse = await fetch(textUrl, {
+    var textResponse = await fetch(textUrl, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -372,13 +381,13 @@ async function sendReviewToTelegram(name, rating, text, photos) {
 
     if (!textResponse.ok) return false;
 
-    for (let k = 0; k < photos.length; k++) {
-      const formData = new FormData();
+    for (var k = 0; k < photos.length; k++) {
+      var formData = new FormData();
       formData.append('chat_id', TG_CHAT_ID);
       formData.append('photo', photos[k]);
       formData.append('caption', '📷 Фото к отзыву от ' + name + ' (' + (k + 1) + ' из ' + photos.length + ')');
 
-      const photoUrl = 'https://api.telegram.org/bot' + TG_TOKEN + '/sendPhoto';
+      var photoUrl = 'https://api.telegram.org/bot' + TG_TOKEN + '/sendPhoto';
       await fetch(photoUrl, { method: 'POST', body: formData });
     }
 
@@ -392,14 +401,14 @@ async function sendReviewToTelegram(name, rating, text, photos) {
 async function submitReview(e) {
   e.preventDefault();
 
-  const nameEl = document.getElementById('review-name');
-  const textEl = document.getElementById('review-text');
+  var nameEl = document.getElementById('review-name');
+  var textEl = document.getElementById('review-text');
   
   if (!nameEl || !textEl) return;
 
-  const name = nameEl.value.trim();
-  const rating = reviewRating ? parseInt(reviewRating.value) || 5 : 5;
-  const text = textEl.value.trim();
+  var name = nameEl.value.trim();
+  var rating = reviewRating ? parseInt(reviewRating.value) || 5 : 5;
+  var text = textEl.value.trim();
 
   if (name.length < 2) {
     alert('Пожалуйста, введите имя');
@@ -415,7 +424,7 @@ async function submitReview(e) {
     reviewSubmit.textContent = 'Отправка...';
   }
 
-  const ok = await sendReviewToTelegram(name, rating, text, selectedPhotos);
+  var ok = await sendReviewToTelegram(name, rating, text, selectedPhotos);
 
   if (ok) {
     if (reviewFormView) reviewFormView.classList.add('hide');
@@ -427,7 +436,7 @@ async function submitReview(e) {
     if (fileUploadInfo) fileUploadInfo.textContent = 'Не более 3 фото, до 5 МБ каждое';
     if (reviewRating) reviewRating.value = 5;
     
-    for (let m = 0; m < starButtons.length; m++) {
+    for (var m = 0; m < starButtons.length; m++) {
       starButtons[m].classList.add('active');
     }
 
