@@ -1,61 +1,141 @@
+// ============ ПРОКРУТКА НАВЕРХ ============
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
 // ============ МАСКА ТЕЛЕФОНА ============
 function initPhoneMask(input) {
   const PREFIX = '+375 ';
   const PREFIX_LEN = PREFIX.length;
+
   input.addEventListener('focus', function() {
-    if (!this.value || this.value.length < PREFIX_LEN) { this.value = PREFIX; }
+    if (!this.value || this.value.length < PREFIX_LEN) {
+      this.value = PREFIX;
+    }
   });
+
   input.addEventListener('input', function() {
     let digits = this.value.replace(/\D/g, '');
     if (digits.startsWith('375')) digits = digits.slice(3);
     digits = digits.slice(0, 9);
+
     let formatted = PREFIX;
     if (digits.length > 0) formatted += digits.slice(0, 2);
     if (digits.length > 2) formatted += ' ' + digits.slice(2, 5);
     if (digits.length > 5) formatted += '-' + digits.slice(5, 7);
     if (digits.length > 7) formatted += '-' + digits.slice(7, 9);
+
     this.value = formatted;
   });
+
   input.addEventListener('keydown', function(e) {
-    if ((e.key === 'Backspace' || e.key === 'Delete') && this.selectionStart <= PREFIX_LEN && this.selectionEnd <= PREFIX_LEN) {
+    if ((e.key === 'Backspace' || e.key === 'Delete') &&
+        this.selectionStart <= PREFIX_LEN &&
+        this.selectionEnd <= PREFIX_LEN) {
       e.preventDefault();
     }
   });
 }
+
 document.querySelectorAll('input[type="tel"]').forEach(initPhoneMask);
 
+// ============ АНИМАЦИЯ ПОЯВЛЕНИЯ (REVEAL) ============
+const revealElements = document.querySelectorAll('.reveal');
+
+if ('IntersectionObserver' in window) {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.05,
+    rootMargin: '0px 0px -40px 0px'
+  });
+
+  revealElements.forEach(el => observer.observe(el));
+
+  setTimeout(() => {
+    revealElements.forEach(el => {
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight && !el.classList.contains('visible')) {
+        el.classList.add('visible');
+      }
+    });
+  }, 1200);
+
+  setTimeout(() => {
+    const visibleCount = document.querySelectorAll('.reveal.visible').length;
+    if (visibleCount === 0) {
+      revealElements.forEach(el => el.classList.add('visible'));
+    }
+  }, 2000);
+} else {
+  revealElements.forEach(el => el.classList.add('visible'));
+}
+
+// ============ ПЛАВАЮЩИЕ КНОПКИ ============
+const floatButtons = document.getElementById('floatButtons');
+const upBtn = document.getElementById('upBtn');
+
+function handleScroll() {
+  const scrolled = window.scrollY;
+
+  if (floatButtons) {
+    if (scrolled > 300) {
+      floatButtons.classList.add('show');
+    } else {
+      floatButtons.classList.remove('show');
+    }
+  }
+
+  if (upBtn) {
+    if (scrolled > 600) {
+      upBtn.classList.add('show');
+    } else {
+      upBtn.classList.remove('show');
+    }
+  }
+}
+
+window.addEventListener('scroll', handleScroll, { passive: true });
+handleScroll();
+
 // ============ ОТПРАВКА В TELEGRAM ============
-// Ваш токен и ID (восстановил ваши данные)
-const TG_TOKEN = '8979084313:AAH5LtdHYApK1mO-VWrUQhkbAtniUHkED_Y'; 
+const TG_TOKEN = '8979084313:AAH5LtdHYApK1mO-VWrUQhkbAtniUHkED_Y';
 const TG_CHAT_ID = '7310945290';
 
 function escapeHtml(str) {
   if (!str) return '';
-  return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;');
 }
 
-async function sendToTelegram(name, phone, task, type) {
-  const title = type === 'Отзыв' ? 'Отзыв с сайта' : 'Новая заявка с сайта';
-  const icon = type === 'Отзыв' ? '📝' : '🔔';
-  
-  const text = icon + ' <b>' + title + '</b>\n\n' +
+async function sendToTelegram(name, phone, task) {
+  const text =
+    '🔔 <b>Новая заявка с сайта</b>\n\n' +
     '👤 <b>Имя:</b> ' + escapeHtml(name) + '\n' +
     '📞 <b>Телефон:</b> ' + escapeHtml(phone) + '\n' +
-    '📝 <b>Сообщение:</b> ' + escapeHtml(task || 'не указано') + '\n\n' +
+    '📝 <b>Задача:</b> ' + escapeHtml(task || 'не указана') + '\n\n' +
     '🕐 ' + new Date().toLocaleString('ru-RU');
-    
+
   const url = 'https://api.telegram.org/bot' + TG_TOKEN + '/sendMessage';
-  try {
-    const response = await fetch(url, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ chat_id: TG_CHAT_ID, text: text, parse_mode: 'HTML' })
-    });
-    return response.ok;
-  } catch (err) { 
-    console.error('Ошибка TG:', err);
-    return false; 
-  }
+
+  const response = await fetch(url, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      chat_id: TG_CHAT_ID,
+      text: text,
+      parse_mode: 'HTML'
+    })
+  });
+
+  return response.ok;
 }
 
 // ============ ОСНОВНАЯ ФОРМА ============
@@ -71,41 +151,49 @@ async function submitMainForm(e) {
     alert('Пожалуйста, введите полный номер телефона');
     return;
   }
+
   btn.disabled = true;
   btn.textContent = 'Отправка...';
 
-  const ok = await sendToTelegram(name, phone, task, 'Заявка');
-  if (ok) {
-    btn.textContent = '✓ Отправлено';
-    form.reset();
-    form.tel.value = '+375 ';
-    setTimeout(() => { btn.disabled = false; btn.textContent = 'Отправить заявку'; }, 3000);
-  } else {
+  try {
+    const ok = await sendToTelegram(name, phone, task);
+    if (ok) {
+      btn.textContent = '✓ Отправлено';
+      form.reset();
+      form.tel.value = '+375 ';
+      setTimeout(() => {
+        btn.disabled = false;
+        btn.textContent = 'Отправить заявку';
+      }, 3000);
+    } else {
+      throw new Error('Ошибка отправки');
+    }
+  } catch (err) {
     btn.textContent = 'Ошибка. Попробуйте ещё раз';
     btn.disabled = false;
-    setTimeout(() => { btn.textContent = 'Отправить заявку'; }, 3000);
+    setTimeout(() => {
+      btn.textContent = 'Отправить заявку';
+    }, 3000);
   }
 }
 
-// ============ МОДАЛЬНОЕ ОКНО ЗАЯВКИ ============
+// ============ МОДАЛКА ЗАЯВКИ ============
 const overlay = document.getElementById('modalOverlay');
 const formView = document.getElementById('modalForm');
 const successView = document.getElementById('modalSuccess');
 
 function openModal() {
-  if(overlay) {
-    overlay.classList.add('active');
-    document.body.classList.add('modal-open');
-    formView.classList.remove('hide');
-    successView.classList.remove('show');
-  }
+  if (!overlay) return;
+  overlay.classList.add('active');
+  document.body.classList.add('modal-open');
+  formView.classList.remove('hide');
+  successView.classList.remove('show');
 }
 
 function closeModal() {
-  if(overlay) {
-    overlay.classList.remove('active');
-    document.body.classList.remove('modal-open');
-  }
+  if (!overlay) return;
+  overlay.classList.remove('active');
+  document.body.classList.remove('modal-open');
 }
 
 async function submitModal(e) {
@@ -120,24 +208,31 @@ async function submitModal(e) {
     alert('Пожалуйста, введите полный номер телефона');
     return;
   }
+
   btn.disabled = true;
   btn.textContent = 'Отправка...';
 
-  const ok = await sendToTelegram(name, phone, task, 'Заявка');
-  if (ok) {
-    formView.classList.add('hide');
-    successView.classList.add('show');
-    form.reset();
-    form.tel.value = '+375 ';
-    setTimeout(() => {
-      closeModal();
-      btn.disabled = false;
-      btn.textContent = 'Отправить заявку';
-    }, 3000);
-  } else {
+  try {
+    const ok = await sendToTelegram(name, phone, task);
+    if (ok) {
+      formView.classList.add('hide');
+      successView.classList.add('show');
+      form.reset();
+      form.tel.value = '+375 ';
+      setTimeout(() => {
+        closeModal();
+        btn.disabled = false;
+        btn.textContent = 'Отправить заявку';
+      }, 3000);
+    } else {
+      throw new Error('Ошибка');
+    }
+  } catch (err) {
     btn.textContent = 'Ошибка. Попробуйте ещё раз';
     btn.disabled = false;
-    setTimeout(() => { btn.textContent = 'Отправить заявку'; }, 3000);
+    setTimeout(() => {
+      btn.textContent = 'Отправить заявку';
+    }, 3000);
   }
 }
 
@@ -145,131 +240,198 @@ document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape' && overlay && overlay.classList.contains('active')) closeModal();
 });
 
-// ============ ФОРМА ОТЗЫВОВ (ЗВЕЗДЫ) ============
-(function initReviewForm() {
-  const reviewModal = document.getElementById('reviewModal');
-  const openBtn = document.getElementById('openReviewBtn');
-  const closeBtn = document.getElementById('closeReviewBtn');
-  const form = document.getElementById('reviewForm');
-  const formWrap = document.getElementById('reviewFormWrap');
-  const success = document.getElementById('reviewSuccess');
-  if (!reviewModal || !openBtn) return;
+// ============ МОДАЛКА ОТЗЫВА ============
+const reviewOverlay = document.getElementById('reviewOverlay');
+const reviewFormView = document.getElementById('reviewFormView');
+const reviewSuccess = document.getElementById('reviewSuccess');
+const openReviewBtn = document.getElementById('openReviewBtn');
+const reviewFormEl = document.getElementById('reviewFormEl');
+const reviewSubmit = document.getElementById('reviewSubmit');
+const reviewPhotos = document.getElementById('review-photos');
+const filePreview = document.getElementById('filePreview');
+const fileUploadInfo = document.getElementById('fileUploadInfo');
+const starButtons = document.querySelectorAll('.star');
+const reviewRating = document.getElementById('review-rating');
 
-  const ratingField = document.getElementById('reviewRatingField');
-  const stars = Array.from(document.querySelectorAll('#ratingStars .star'));
-  const hint = document.getElementById('ratingHint');
-  const hints = ['', 'Очень плохо', 'Плохо', 'Нормально', 'Хорошо', 'Отлично!'];
-  let rating = 0;
+let selectedPhotos = [];
 
-  const paint = (n, hoverMode) => {
-    stars.forEach(s => {
-      const v = Number(s.dataset.value);
-      const lit = hoverMode ? v <= n : v <= rating;
-      s.classList.toggle('active', lit);
-      if (v === rating) s.setAttribute('aria-checked', 'true');
-      else s.setAttribute('aria-checked', 'false');
-    });
-  };
-  const setHint = (n) => { hint.textContent = n ? hints[n] : ''; };
+function openReviewModal() {
+  if (!reviewOverlay) return;
+  reviewOverlay.classList.add('active');
+  document.body.classList.add('modal-open');
+  reviewFormView.classList.remove('hide');
+  reviewSuccess.classList.remove('show');
+}
 
-  stars.forEach(star => {
-    const v = Number(star.dataset.value);
-    star.addEventListener('mouseenter', () => { paint(v, true); setHint(v); });
-    star.addEventListener('click', () => {
-      rating = v;
-      ratingField.style.borderBottom = '';
-      paint(rating, false);
-      setHint(rating);
-    });
-    star.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); star.click(); }
-    });
+function closeReviewModal() {
+  if (!reviewOverlay) return;
+  reviewOverlay.classList.remove('active');
+  document.body.classList.remove('modal-open');
+}
+
+if (openReviewBtn) openReviewBtn.addEventListener('click', openReviewModal);
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && reviewOverlay && reviewOverlay.classList.contains('active')) {
+    closeReviewModal();
+  }
+});
+
+// Логика звезд
+for (let s = 0; s < starButtons.length; s++) {
+  starButtons[s].addEventListener('click', function() {
+    const value = parseInt(this.getAttribute('data-value'));
+    reviewRating.value = value;
+    for (let i = 0; i < starButtons.length; i++) {
+      if (parseInt(starButtons[i].getAttribute('data-value')) <= value) {
+        starButtons[i].classList.add('active');
+      } else {
+        starButtons[i].classList.remove('active');
+      }
+    }
   });
+}
 
-  document.getElementById('ratingStars').addEventListener('mouseleave', () => {
-    paint(rating, false);
-    setHint(rating);
+// Логика фото
+function renderPhotoPreviews() {
+  filePreview.innerHTML = '';
+  for (let i = 0; i < selectedPhotos.length; i++) {
+    (function(index) {
+      const file = selectedPhotos[index];
+      const item = document.createElement('div');
+      item.className = 'file-preview-item';
+
+      const img = document.createElement('img');
+      img.src = URL.createObjectURL(file);
+      item.appendChild(img);
+
+      const removeBtn = document.createElement('button');
+      removeBtn.type = 'button';
+      removeBtn.className = 'file-preview-remove';
+      removeBtn.innerHTML = '×';
+      removeBtn.addEventListener('click', function() {
+        selectedPhotos.splice(index, 1);
+        renderPhotoPreviews();
+      });
+      item.appendChild(removeBtn);
+      filePreview.appendChild(item);
+    })(i);
+  }
+
+  if (selectedPhotos.length > 0) {
+    fileUploadInfo.textContent = 'Выбрано фото: ' + selectedPhotos.length + ' из 3';
+  } else {
+    fileUploadInfo.textContent = 'Не более 3 фото, до 5 МБ каждое';
+  }
+}
+
+if (reviewPhotos) {
+  reviewPhotos.addEventListener('change', function() {
+    const files = this.files;
+    for (let i = 0; i < files.length; i++) {
+      if (selectedPhotos.length >= 3) {
+        alert('Можно прикрепить не более 3 фото');
+        break;
+      }
+      if (files[i].size > 5 * 1024 * 1024) {
+        alert('Файл ' + files[i].name + ' больше 5 МБ');
+        continue;
+      }
+      selectedPhotos.push(files[i]);
+    }
+    this.value = '';
+    renderPhotoPreviews();
   });
+}
 
-  let lastFocused = null;
-  const openReviewModal = () => {
-    lastFocused = document.activeElement;
-    reviewModal.classList.add('active');
-    document.body.classList.add('modal-open');
-    setTimeout(() => document.getElementById('reviewName').focus(), 50);
-  };
-  const closeReviewModal = () => {
-    reviewModal.classList.remove('active');
-    document.body.classList.remove('modal-open');
-    if (lastFocused) lastFocused.focus();
-    setTimeout(() => {
-      form.reset();
-      rating = 0;
-      paint(0, false);
-      setHint(0);
-      ratingField.style.borderBottom = '';
-      formWrap.classList.remove('hide');
-      success.classList.remove('show');
-    }, 300);
-  };
+// Отправка отзыва
+async function sendReviewToTelegram(name, rating, text, photos) {
+  let stars = '';
+  for (let i = 0; i < rating; i++) stars += '★';
+  for (let j = rating; j < 5; j++) stars += '☆';
 
-  openBtn.addEventListener('click', openReviewModal);
-  closeBtn.addEventListener('click', closeReviewModal);
-  reviewModal.addEventListener('click', (e) => { if (e.target === reviewModal) closeReviewModal(); });
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && reviewModal.classList.contains('active')) closeReviewModal();
-  });
+  const messageText =
+    '📝 НОВЫЙ ОТЗЫВ С САЙТА\n\n' +
+    '👤 Имя: ' + name + '\n' +
+    '⭐ Оценка: ' + stars + ' (' + rating + '/5)\n' +
+    '💬 Текст: ' + text + '\n\n' +
+    '🖼 Фото: ' + (photos.length > 0 ? photos.length + ' шт.' : 'без фото') + '\n' +
+    '🕐 ' + new Date().toLocaleString('ru-RU');
 
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    let ok = true;
+  const textUrl = 'https://api.telegram.org/bot' + TG_TOKEN + '/sendMessage';
 
-    const name = document.getElementById('reviewName');
-    const text = document.getElementById('reviewText');
-    const phoneInput = document.getElementById('reviewPhone');
+  try {
+    const textResponse = await fetch(textUrl, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        chat_id: TG_CHAT_ID,
+        text: messageText
+      })
+    });
 
-    const mark = (el, valid) => {
-      el.style.borderBottomColor = valid ? '' : 'var(--accent)';
-      if (!valid) ok = false;
-    };
+    if (!textResponse.ok) return false;
 
-    mark(name, name.value.trim().length >= 2);
-    mark(text, text.value.trim().length >= 10);
+    for (let k = 0; k < photos.length; k++) {
+      const formData = new FormData();
+      formData.append('chat_id', TG_CHAT_ID);
+      formData.append('photo', photos[k]);
+      formData.append('caption', '📷 Фото к отзыву от ' + name + ' (' + (k + 1) + ' из ' + photos.length + ')');
 
-    if (rating === 0) {
-      ratingField.style.borderBottom = '1px solid var(--accent)';
-      hint.textContent = 'Поставьте оценку';
-      ok = false;
-    } else {
-      ratingField.style.borderBottom = '';
+      const photoUrl = 'https://api.telegram.org/bot' + TG_TOKEN + '/sendPhoto';
+      await fetch(photoUrl, { method: 'POST', body: formData });
     }
 
-    if (!ok) return;
+    return true;
+  } catch (err) {
+    console.error('Review send error:', err);
+    return false;
+  }
+}
 
-    const submitBtn = form.querySelector('button[type="submit"]');
-    submitBtn.disabled = true;
-    submitBtn.textContent = 'Отправка...';
+async function submitReview(e) {
+  e.preventDefault();
 
-    // Собираем текст для Telegram с учетом рейтинга
-    const reviewText = text.value.trim();
-    const reviewPhone = phoneInput.value.trim();
-    const starsStr = '★'.repeat(rating) + '☆'.repeat(5 - rating);
-    const fullText = `Оценка: ${starsStr} (${rating}/5)\n\nТекст: ${reviewText}`;
+  const name = document.getElementById('review-name').value.trim();
+  const rating = parseInt(reviewRating.value) || 5;
+  const text = document.getElementById('review-text').value.trim();
 
-    const res = await sendToTelegram(name.value.trim(), reviewPhone, fullText, 'Отзыв');
+  if (name.length < 2) {
+    alert('Пожалуйста, введите имя');
+    return;
+  }
+  if (text.length < 5) {
+    alert('Пожалуйста, напишите отзыв (минимум 5 символов)');
+    return;
+  }
 
-    if (res) {
-      formWrap.classList.add('hide');
-      success.classList.add('show');
-    } else {
-      alert('Не удалось отправить отзыв. Попробуйте позже.');
+  reviewSubmit.disabled = true;
+  reviewSubmit.textContent = 'Отправка...';
+
+  const ok = await sendReviewToTelegram(name, rating, text, selectedPhotos);
+
+  if (ok) {
+    reviewFormView.classList.add('hide');
+    reviewSuccess.classList.add('show');
+    reviewFormEl.reset();
+    selectedPhotos = [];
+    filePreview.innerHTML = '';
+    fileUploadInfo.textContent = 'Не более 3 фото, до 5 МБ каждое';
+    reviewRating.value = 5;
+    for (let m = 0; m < starButtons.length; m++) {
+      starButtons[m].classList.add('active');
     }
-    
-    submitBtn.disabled = false;
-    submitBtn.textContent = 'Отправить';
-  });
 
-  form.querySelectorAll('input, textarea').forEach(el => {
-    el.addEventListener('input', () => { el.style.borderBottomColor = ''; });
-  });
-})();
+    setTimeout(function() {
+      closeReviewModal();
+      reviewSubmit.disabled = false;
+      reviewSubmit.textContent = 'Отправить отзыв';
+    }, 3500);
+  } else {
+    reviewSubmit.textContent = 'Ошибка. Попробуйте ещё раз';
+    reviewSubmit.disabled = false;
+    setTimeout(function() {
+      reviewSubmit.textContent = 'Отправить отзыв';
+    }, 3000);
+  }
+}
