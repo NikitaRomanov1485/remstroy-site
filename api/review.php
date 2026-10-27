@@ -8,10 +8,10 @@ $TG_TOKEN   = getenv('TG_TOKEN')   ?: '8979084313:AAH5LtdHYApK1mO-VWrUQhkbAtniUH
 $TG_CHAT_ID = getenv('TG_CHAT_ID') ?: '7310945290';
 
 // Разрешаем только POST
-if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    http_response_code(405);
-    echo '{"ok":false,"error":"method_not_allowed"}';
-    exit;
+//if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    //http_response_code(405);
+    //echo '{"ok":false,"error":"method_not_allowed"}';
+    //exit;
 }
 
 // Ограничение размера тела (защита от мусора)
