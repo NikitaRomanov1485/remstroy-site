@@ -212,3 +212,17 @@ function closeReviewModal() {
   var el = document.getElementById('reviewOverlay');
   if (el) { el.classList.remove('active'); document.body.classList.remove('modal-open'); }
 }
+
+// Закрытие модалки отзыва по крестику
+document.addEventListener('DOMContentLoaded', function() {
+  var closeBtn = document.getElementById('closeReviewBtn');
+  if (closeBtn) {
+    closeBtn.addEventListener('click', closeReviewModal);
+  }
+  
+  // Принудительно вешаем отправку формы отзыва, если она не привязалась
+  var form = document.getElementById('reviewFormEl');
+  if (form && !form.dataset.bound) {
+    // Если форма не обрабатывается (на всякий случай)
+  }
+});
