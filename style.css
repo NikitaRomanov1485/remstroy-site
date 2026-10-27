@@ -485,64 +485,51 @@ footer { background: var(--bg-soft); border-top: 1px solid var(--border); color:
 
 /* Мобильная версия (до 640px) */
 @media (max-width: 640px) {
-  .container { padding: 0 20px; }
-  
-  /* Шапка на мобильном */
+  /* Шапка */
   .header-inner {
-    flex-direction: column;
-    gap: 16px;
+    display: flex;
+    flex-wrap: wrap; /* Разрешаем перенос строк */
+    justify-content: space-between; /* Логотип влево, кнопка вправо */
+    align-items: center;
     padding: 16px 0;
+    gap: 16px;
   }
   
-  .header-inner > .logo {
-    align-self: flex-start;
+  /* Логотип */
+  .logo {
+    flex-shrink: 0;
   }
 
-  /* Меню: показываем и ставим под кнопку */
+  /* Кнопка Заявка */
+  .header-right {
+    width: auto; /* Убираем растягивание на 100% */
+    flex-shrink: 0;
+  }
+  
+  .phone-group {
+    display: none; /* Скрываем телефоны, чтобы не мешали */
+  }
+
+  .btn-sm {
+    padding: 10px 16px;
+    font-size: 10px;
+  }
+
+  /* Меню (спускаем вниз) */
   nav {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 12px 20px;
-    width: 100%;
+    width: 100%; /* Меню занимает всю ширину */
     padding-top: 16px;
     border-top: 1px solid var(--border);
-    order: 3;
+    order: 3; /* Отправляем меню в самый низ шапки */
   }
 
-  nav a { font-size: 12px; }
-
-  /* Блок справа: телефоны и кнопка */
-  .header-right {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    gap: 10px;
+  nav a {
+    font-size: 12px;
   }
-
-  .phone-group { display: none; }
-  .btn-sm { padding: 10px 16px; font-size: 10px; }
-
-  /* Остальные стили для мобильных */
-  .hero { padding: 80px 0 72px; }
-  .hero-actions { margin-bottom: 56px; }
-  .hero-actions .btn { width: 100%; text-align: center; }
-  section { padding: 72px 0; }
-  .section-head { margin-bottom: 48px; }
-  .receipts { gap: 48px; }
-  .receipt { width: 100%; max-width: 340px; transform: rotate(0deg) !important; }
-  .adv-num { font-size: 56px; }
-  .footer-bottom { flex-direction: column; text-align: center; }
-  .modal { padding: 44px 26px 36px; }
-  .modal h3 { font-size: 26px; }
-  .star { font-size: 28px; }
-  .float-buttons { right: 16px; bottom: 16px; gap: 10px; }
-  .float-btn { width: 50px; height: 50px; }
-  .float-btn svg { width: 22px; height: 22px; }
-  .float-btn .tooltip { display: none; }
-  .price-table th, .price-table td { padding: 12px 14px; font-size: 14px; }
 }
 
 /* ============ ВЫПАДАЮЩЕЕ МЕНЮ ============ */
