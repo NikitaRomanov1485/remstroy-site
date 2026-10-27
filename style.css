@@ -544,3 +544,43 @@ footer { background: var(--bg-soft); border-top: 1px solid var(--border); color:
   .hero-actions .btn { width: 100%; text-align: center; }
   .price-table th, .price-table td { padding: 12px 14px; font-size: 14px; }
 }
+
+/* ============ ВЫПАДАЮЩЕЕ МЕНЮ ============ */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+.dropdown-toggle {
+  cursor: pointer;
+}
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: var(--bg-card, #151515);
+  min-width: 220px;
+  border: 1px solid var(--border, #232323);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  z-index: 200;
+  padding: 10px 0;
+  margin-top: 10px;
+}
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+.dropdown-menu a {
+  display: block;
+  padding: 12px 20px;
+  margin: 0;
+  font-size: 13px;
+  text-transform: none;
+  letter-spacing: 0;
+}
+.dropdown-menu a::after {
+  display: none; /* Убираем полоску при наведении */
+}
+.dropdown-menu a:hover {
+  background: var(--bg-elevated, #1a1a1a);
+  color: var(--accent, #f59e0b);
+}
