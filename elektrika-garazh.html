@@ -44,35 +44,34 @@
   </div>
 </header>
 
-<!-- ХЛЕБНЫЕ КРОШКИ + СТРЕЛКА НАЗАД -->
-<div class="container">
-  <div class="breadcrumbs" style="display: flex; align-items: center; gap: 12px; padding: 24px 0 0;">
-    <a href="index.html" class="back-link" style="margin-right: 4px;">
-      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width: 18px; height: 18px;">
-        <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
-      </svg>
-    </a>
-    <a href="index.html">Главная</a>
-    <span>/</span>
-    <span>Электрика в гараже</span>
-  </div>
-</div>
-
 <!-- ЗАГОЛОВОК -->
-<section class="hero" style="padding-bottom: 60px;">
+<section class="hero" style="padding-top: 40px; padding-bottom: 80px;">
   <div class="container">
-    <div class="section-head reveal" style="margin-bottom: 32px; border-bottom: none; padding-bottom: 0;">
-      <h1 style="font-size: clamp(32px, 5vw, 56px); font-weight: 700; letter-spacing: -.03em; line-height: 1.05; margin-bottom: 24px;">
-        Электрика в гараже <em style="color: var(--accent); font-style: normal;">под ключ</em>
-      </h1>
+    
+    <!-- Хлебные крошки -->
+    <div class="breadcrumbs" style="display: flex; align-items: center; gap: 12px; margin-bottom: 32px;">
+      <a href="index.html" class="back-link" style="margin-right: 4px;">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width: 18px; height: 18px;">
+          <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+        </svg>
+      </a>
+      <a href="index.html">Главная</a>
+      <span>/</span>
+      <span>Электрика в гараже</span>
     </div>
-    <p class="section-text reveal" style="max-width: 800px; font-size: 18px;">
-      Проведём свет, установим щиток, сделаем заземление и подключим силовое оборудование (сварочный аппарат, компрессор, подъёмник). Работаем в Гомеле и Гомельском районе, в кооперативах и частных гаражах. Даём гарантию 5 лет.
-    </p>
-    <div class="hero-actions reveal reveal-delay-1" style="margin-top: 32px;">
+
+    <!-- Заголовок -->
+    <h1>Электрика в гараже <em>под ключ</em></h1>
+    
+    <!-- Текст (вернули класс hero-sub) -->
+    <p class="hero-sub">Проведём свет, установим щиток, сделаем заземление и подключим силовое оборудование (сварочный аппарат, компрессор, подъёмник). Работаем в Гомеле и Гомельском районе, в кооперативах и частных гаражах. Даём гарантию 5 лет.</p>
+    
+    <!-- Кнопки -->
+    <div class="hero-actions">
       <button class="btn" onclick="openModal()">Заказать монтаж</button>
       <a href="#contact" class="btn btn-outline">Рассчитать стоимость</a>
     </div>
+    
   </div>
 </section>
 
