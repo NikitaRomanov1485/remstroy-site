@@ -256,7 +256,7 @@ const reviewRating = document.getElementById('review-rating');
 let selectedPhotos = [];
 
 function openReviewModal() {
-  if (!reviewOverlay) return;
+  if (!reviewOverlay) return; // Проверка
   reviewOverlay.classList.add('active');
   document.body.classList.add('modal-open');
   reviewFormView.classList.remove('hide');
@@ -264,18 +264,15 @@ function openReviewModal() {
 }
 
 function closeReviewModal() {
-  if (!reviewOverlay) return;
+  if (!reviewOverlay) return; // Проверка
   reviewOverlay.classList.remove('active');
   document.body.classList.remove('modal-open');
 }
 
-if (openReviewBtn) openReviewBtn.addEventListener('click', openReviewModal);
-
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape' && reviewOverlay && reviewOverlay.classList.contains('active')) {
-    closeReviewModal();
-  }
-});
+// Проверка перед добавлением обработчика
+if (openReviewBtn) {
+  openReviewBtn.addEventListener('click', openReviewModal);
+}
 
 // Логика звезд
 for (let s = 0; s < starButtons.length; s++) {
