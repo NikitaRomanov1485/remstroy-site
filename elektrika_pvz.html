@@ -161,6 +161,7 @@
   }
   .float-btn.tg { background: #229ED9; }
   .float-btn.viber { background: #7360F2; }
+  .float-btn.up { background: #2e2e2e; }
   .float-btn .tooltip {
     position: absolute;
     right: calc(100% + 12px);
@@ -189,6 +190,9 @@
     .float-btn svg { width: 22px; height: 22px; }
     .float-btn .tooltip { display: none; }
   }
+  @media (prefers-reduced-motion: reduce) {
+    .float-buttons, .float-btn, .float-btn .tooltip { transition: none; }
+  }
 </style>
 
 <div class="float-buttons" id="floatButtons">
@@ -200,17 +204,29 @@
     <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M11.4 0C9.473.028 5.333.344 3.02 2.467 1.302 4.187.696 6.7.633 9.817c-.06 3.11.077 6.03 1.845 7.99.8.85 2.14 1.41 3.61 1.61l-.35 2.11c-.03.17.06.35.2.42.05.03.11.04.17.04.11 0 .21-.05.28-.13l2.63-3.08c.51.02 1.02.02 1.53 0 1.92-.03 6.06-.35 8.37-2.47 1.72-1.72 2.32-4.23 2.39-7.35.06-3.11-.08-6.03-1.85-7.99C17.37.24 14.28.03 12.06 0c-.22 0-.44 0-.66.01zm.14 1.83c.19 0 .38 0 .57.01 1.96.03 4.28.28 5.51 1.64 1.35 1.5 1.48 4 1.42 6.72-.06 2.73-.59 4.79-1.87 6.07-1.94 1.79-5.61 2.02-7.06 2.05-.16 0-.32.01-.48.01h-.63l-.32.37-1.5 1.76.2-1.2.14-.83-.84-.1c-1.21-.15-2.21-.57-2.74-1.13-1.28-1.42-1.42-3.97-1.37-6.78.06-2.73.59-4.79 1.87-6.07C4.83 1.56 7.87 1.8 9.65 1.82c.63.01 1.26.01 1.89.01zm-.02 2.16c-.28 0-.51.23-.51.51 0 .28.23.51.51.51 1.55 0 2.81 1.27 2.81 2.82 0 .28.23.51.51.51.28 0 .51-.23.51-.51 0-2.12-1.72-3.84-3.84-3.84zm0 2.13c-.28 0-.51.23-.51.51 0 .28.23.51.51.51.39 0 .71.32.71.71 0 .28.23.51.51.51s.51-.23.51-.51c0-.96-.78-1.73-1.73-1.73zm-3.63.42c-.15 0-.31.05-.44.16l-1.05.85c-.62.5-.76 1.4-.34 2.06.6.94 1.31 1.81 2.11 2.61.81.81 1.69 1.52 2.63 2.11.67.42 1.56.28 2.06-.34l.85-1.05c.36-.45.26-1.11-.21-1.44l-1.42-1c-.38-.27-.9-.22-1.22.12l-.35.37c-.5-.25-.97-.56-1.4-.99-.43-.43-.74-.89-.99-1.4l.37-.35c.34-.32.4-.84.13-1.22l-1-1.42c-.21-.29-.54-.45-.88-.45-.13 0-.27.03-.4.09z"/></svg>
     <span class="tooltip">Написать в Viber</span>
   </a>
+  <button type="button" class="float-btn up" id="scrollTopBtn" aria-label="Наверх">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 4l-8 8h5v8h6v-8h5z"/></svg>
+    <span class="tooltip">Наверх</span>
+  </button>
 </div>
 
 <script>
   const floatButtons = document.getElementById('floatButtons');
+  const scrollTopBtn = document.getElementById('scrollTopBtn');
+  const SCROLL_THRESHOLD = 300;
+
   if (floatButtons) {
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 300) {
-        floatButtons.classList.add('show');
-      } else {
-        floatButtons.classList.remove('show');
-      }
+    const toggleButtons = () => {
+      floatButtons.classList.toggle('show', window.scrollY > SCROLL_THRESHOLD);
+    };
+    toggleButtons();
+    window.addEventListener('scroll', toggleButtons, { passive: true });
+  }
+
+  if (scrollTopBtn) {
+    scrollTopBtn.addEventListener('click', () => {
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
     });
   }
 </script>

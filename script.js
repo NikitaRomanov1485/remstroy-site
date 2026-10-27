@@ -65,13 +65,6 @@ if ('IntersectionObserver' in window) {
       }
     });
   }, 1200);
-
-  setTimeout(() => {
-    const visibleCount = document.querySelectorAll('.reveal.visible').length;
-    if (visibleCount === 0) {
-      revealElements.forEach(el => el.classList.add('visible'));
-    }
-  }, 2000);
 } else {
   revealElements.forEach(el => el.classList.add('visible'));
 }
@@ -101,7 +94,7 @@ function handleScroll() {
 }
 
 window.addEventListener('scroll', handleScroll, { passive: true });
-handleScroll();
+if (floatButtons) handleScroll();
 
 // ============ ОТПРАВКА В TELEGRAM ============
 const TG_TOKEN = '8979084313:AAH5LtdHYApK1mO-VWrUQhkbAtniUHkED_Y';
@@ -186,8 +179,8 @@ function openModal() {
   if (!overlay) return;
   overlay.classList.add('active');
   document.body.classList.add('modal-open');
-  formView.classList.remove('hide');
-  successView.classList.remove('show');
+  if (formView) formView.classList.remove('hide');
+  if (successView) successView.classList.remove('show');
 }
 
 function closeModal() {
@@ -215,8 +208,8 @@ async function submitModal(e) {
   try {
     const ok = await sendToTelegram(name, phone, task);
     if (ok) {
-      formView.classList.add('hide');
-      successView.classList.add('show');
+      if (formView) formView.classList.add('hide');
+      if (successView) successView.classList.add('show');
       form.reset();
       form.tel.value = '+375 ';
       setTimeout(() => {
@@ -256,41 +249,49 @@ const reviewRating = document.getElementById('review-rating');
 let selectedPhotos = [];
 
 function openReviewModal() {
-  if (!reviewOverlay) return; // Проверка
+  if (!reviewOverlay) return;
   reviewOverlay.classList.add('active');
   document.body.classList.add('modal-open');
-  reviewFormView.classList.remove('hide');
-  reviewSuccess.classList.remove('show');
+  if (reviewFormView) reviewFormView.classList.remove('hide');
+  if (reviewSuccess) reviewSuccess.classList.remove('show');
 }
 
 function closeReviewModal() {
-  if (!reviewOverlay) return; // Проверка
+  if (!reviewOverlay) return;
   reviewOverlay.classList.remove('active');
   document.body.classList.remove('modal-open');
 }
 
-// Проверка перед добавлением обработчика
 if (openReviewBtn) {
   openReviewBtn.addEventListener('click', openReviewModal);
 }
 
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && reviewOverlay && reviewOverlay.classList.contains('active')) {
+    closeReviewModal();
+  }
+});
+
 // Логика звезд
-for (let s = 0; s < starButtons.length; s++) {
-  starButtons[s].addEventListener('click', function() {
-    const value = parseInt(this.getAttribute('data-value'));
-    reviewRating.value = value;
-    for (let i = 0; i < starButtons.length; i++) {
-      if (parseInt(starButtons[i].getAttribute('data-value')) <= value) {
-        starButtons[i].classList.add('active');
-      } else {
-        starButtons[i].classList.remove('active');
+if (starButtons.length > 0) {
+  for (let s = 0; s < starButtons.length; s++) {
+    starButtons[s].addEventListener('click', function() {
+      const value = parseInt(this.getAttribute('data-value'));
+      if (reviewRating) reviewRating.value = value;
+      for (let i = 0; i < starButtons.length; i++) {
+        if (parseInt(starButtons[i].getAttribute('data-value')) <= value) {
+          starButtons[i].classList.add('active');
+        } else {
+          starButtons[i].classList.remove('active');
+        }
       }
-    }
-  });
+    });
+  }
 }
 
 // Логика фото
 function renderPhotoPreviews() {
+  if (!filePreview) return;
   filePreview.innerHTML = '';
   for (let i = 0; i < selectedPhotos.length; i++) {
     (function(index) {
@@ -315,10 +316,12 @@ function renderPhotoPreviews() {
     })(i);
   }
 
-  if (selectedPhotos.length > 0) {
-    fileUploadInfo.textContent = 'Выбрано фото: ' + selectedPhotos.length + ' из 3';
-  } else {
-    fileUploadInfo.textContent = 'Не более 3 фото, до 5 МБ каждое';
+  if (fileUploadInfo) {
+    if (selectedPhotos.length > 0) {
+      fileUploadInfo.textContent = 'Выбрано фото: ' + selectedPhotos.length + ' из 3';
+    } else {
+      fileUploadInfo.textContent = 'Не более 3 фото, до 5 МБ каждое';
+    }
   }
 }
 
@@ -389,9 +392,14 @@ async function sendReviewToTelegram(name, rating, text, photos) {
 async function submitReview(e) {
   e.preventDefault();
 
-  const name = document.getElementById('review-name').value.trim();
-  const rating = parseInt(reviewRating.value) || 5;
-  const text = document.getElementById('review-text').value.trim();
+  const nameEl = document.getElementById('review-name');
+  const textEl = document.getElementById('review-text');
+  
+  if (!nameEl || !textEl) return;
+
+  const name = nameEl.value.trim();
+  const rating = reviewRating ? parseInt(reviewRating.value) || 5 : 5;
+  const text = textEl.value.trim();
 
   if (name.length < 2) {
     alert('Пожалуйста, введите имя');
@@ -402,33 +410,41 @@ async function submitReview(e) {
     return;
   }
 
-  reviewSubmit.disabled = true;
-  reviewSubmit.textContent = 'Отправка...';
+  if (reviewSubmit) {
+    reviewSubmit.disabled = true;
+    reviewSubmit.textContent = 'Отправка...';
+  }
 
   const ok = await sendReviewToTelegram(name, rating, text, selectedPhotos);
 
   if (ok) {
-    reviewFormView.classList.add('hide');
-    reviewSuccess.classList.add('show');
-    reviewFormEl.reset();
+    if (reviewFormView) reviewFormView.classList.add('hide');
+    if (reviewSuccess) reviewSuccess.classList.add('show');
+    if (reviewFormEl) reviewFormEl.reset();
+    
     selectedPhotos = [];
-    filePreview.innerHTML = '';
-    fileUploadInfo.textContent = 'Не более 3 фото, до 5 МБ каждое';
-    reviewRating.value = 5;
+    if (filePreview) filePreview.innerHTML = '';
+    if (fileUploadInfo) fileUploadInfo.textContent = 'Не более 3 фото, до 5 МБ каждое';
+    if (reviewRating) reviewRating.value = 5;
+    
     for (let m = 0; m < starButtons.length; m++) {
       starButtons[m].classList.add('active');
     }
 
     setTimeout(function() {
       closeReviewModal();
-      reviewSubmit.disabled = false;
-      reviewSubmit.textContent = 'Отправить отзыв';
+      if (reviewSubmit) {
+        reviewSubmit.disabled = false;
+        reviewSubmit.textContent = 'Отправить отзыв';
+      }
     }, 3500);
   } else {
-    reviewSubmit.textContent = 'Ошибка. Попробуйте ещё раз';
-    reviewSubmit.disabled = false;
-    setTimeout(function() {
-      reviewSubmit.textContent = 'Отправить отзыв';
-    }, 3000);
+    if (reviewSubmit) {
+      reviewSubmit.textContent = 'Ошибка. Попробуйте ещё раз';
+      reviewSubmit.disabled = false;
+      setTimeout(function() {
+        reviewSubmit.textContent = 'Отправить отзыв';
+      }, 3000);
+    }
   }
 }
