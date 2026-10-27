@@ -482,10 +482,50 @@ footer { background: var(--bg-soft); border-top: 1px solid var(--border); color:
   .footer-grid { grid-template-columns: 1fr; gap: 40px; }
   .conditions-grid { gap: 24px; }
 }
+
+/* Мобильная версия (до 640px) */
 @media (max-width: 640px) {
   .container { padding: 0 20px; }
-  nav { display: none; }
-  .header-right .phone-group { display: none; }
+  
+  /* Шапка на мобильном */
+  .header-inner {
+    flex-direction: column;
+    gap: 16px;
+    padding: 16px 0;
+  }
+  
+  .header-inner > .logo {
+    align-self: flex-start;
+  }
+
+  /* Меню: показываем и ставим под кнопку */
+  nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px 20px;
+    width: 100%;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+    order: 3;
+  }
+
+  nav a { font-size: 12px; }
+
+  /* Блок справа: телефоны и кнопка */
+  .header-right {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    gap: 10px;
+  }
+
+  .phone-group { display: none; }
+  .btn-sm { padding: 10px 16px; font-size: 10px; }
+
+  /* Остальные стили для мобильных */
   .hero { padding: 80px 0 72px; }
   .hero-actions { margin-bottom: 56px; }
   .hero-actions .btn { width: 100%; text-align: center; }
@@ -529,12 +569,10 @@ footer { background: var(--bg-soft); border-top: 1px solid var(--border); color:
   margin-top: 10px;
 }
 
-/* Показываем меню при наведении на всю обертку */
 .dropdown:hover .dropdown-menu {
   display: block;
 }
 
-/* Стили для ссылок внутри меню */
 .dropdown-menu a {
   display: block;
   padding: 12px 20px;
@@ -545,7 +583,6 @@ footer { background: var(--bg-soft); border-top: 1px solid var(--border); color:
   color: var(--text-soft, #a1a1aa);
 }
 
-/* Убираем подчеркивание, которое есть в главном меню */
 .dropdown-menu a::after {
   display: none;
 }
@@ -566,8 +603,8 @@ footer { background: var(--bg-soft); border-top: 1px solid var(--border); color:
   text-decoration: none;
   transition: color 0.2s, transform 0.2s;
   letter-spacing: 0.02em;
-  width: auto; /* Принудительно убираем растягивание на весь экран */
-  max-width: max-content; /* Еще одна страховка */
+  width: auto;
+  max-width: max-content;
 }
 
 .back-link svg {
@@ -575,7 +612,7 @@ footer { background: var(--bg-soft); border-top: 1px solid var(--border); color:
   height: 20px;
   fill: currentColor;
   transition: transform 0.2s;
-  display: block; /* Убираем лишние отступы у SVG */
+  display: block;
 }
 
 .back-link:hover {
@@ -584,60 +621,4 @@ footer { background: var(--bg-soft); border-top: 1px solid var(--border); color:
 
 .back-link:hover svg {
   transform: translateX(-4px);
-}
-
-/* ============ ИСПРАВЛЕНИЕ ШАПКИ ДЛЯ ТЕЛЕФОНОВ ============ */
-
-/* Общее правило: запрещаем перенос текста в кнопке и контактах */
-.btn-sm, .phone {
-  white-space: nowrap;
-}
-
-/* 1. Горизонтальный режим телефона (ширина от 641px до 900px) */
-@media (min-width: 641px) and (max-width: 900px) {
-  .header-inner {
-    gap: 10px; /* Уменьшаем отступы между блоками */
-  }
-  
-  nav {
-    gap: 15px; /* Уменьшаем отступы в меню */
-  }
-  
-  nav a {
-    font-size: 11px; /* Делаем шрифт меню чуть меньше */
-  }
-  
-  .phone-group {
-    display: none; /* Прячем телефоны, чтобы они не вылезали за край */
-  }
-  
-  .btn-sm {
-    padding: 10px 14px; /* Уменьшаем кнопку */
-    font-size: 10px;
-  }
-}
-
-/* 2. Вертикальный режим телефона (ширина до 640px) */
-@media (max-width: 640px) {
-  .header-inner {
-    justify-content: space-between;
-    align-items: center;
-    padding: 12px 0; /* Чуть уменьшаем высоту шапки */
-  }
-
-  /* Кнопка "Заявка" больше не растягивается */
-  .header-right {
-    width: auto; 
-    flex-shrink: 0;
-  }
-  
-  .btn-sm {
-    padding: 10px 16px;
-    font-size: 10px;
-  }
-
-  /* Логотип не сжимается */
-  .logo {
-    flex-shrink: 0;
-  }
 }
