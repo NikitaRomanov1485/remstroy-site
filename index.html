@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RemStroy — Электромонтаж в Гомеле | ЧТУП «Точка оптимума»</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=JetBrains+Mono:wght@300;400;500;700&display=swap" rel="stylesheet">
+<!-- Подключаем ваш файл стилей -->
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <div class="container header-inner">
+    <a href="index.html" class="logo">
+      Rem<span>Stroy</span>
+      <small>Электромонтаж · Гомель</small>
+    </a>
+    <nav>
+      <a href="#services">Услуги</a>
+      <a href="#reviews">Отзывы</a>
+      <a href="#conditions">Условия</a>
+      <a href="#contact">Контакты</a>
+    </nav>
+    <div class="header-right">
+      <div class="phone-group">
+        <a href="tel:+375293629845" class="phone">+375 29 362-98-45 <small>life</small></a>
+        <a href="tel:+375256019816" class="phone">+375 25 601-98-16 <small>life</small></a>
+      </div>
+      <button class="btn-sm" onclick="openModal()">Заявка</button>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-eyebrow reveal">Гомель · Электромонтаж</div>
+      <h1 class="reveal reveal-delay-1">Электрика <em>под ключ</em> — чисто, точно, по проекту.</h1>
+      <p class="hero-sub reveal reveal-delay-2">Комплексный монтаж проводки, щитов и освещения в квартирах, домах и офисах. Работаем с гарантией 5 лет и по фиксированной смете.</p>
+
+      <div class="hero-actions reveal reveal-delay-3">
+        <button class="btn" onclick="openModal()">Оставить заявку</button>
+        <a href="#services" class="btn btn-outline">Услуги и цены</a>
+      </div>
+
+      <div class="hero-info reveal reveal-delay-4">
+        <div class="hero-info-item">
+          <h4>Комплексные работы</h4>
+          <p><strong>Консультация и замеры — бесплатно</strong><br>Выезд с 17:00</p>
+        </div>
+        <div class="hero-info-item">
+          <h4>Разовые работы</h4>
+          <p><strong>1–2 задачи — вызов 30 BYN</strong><br>Розетка, люстра, автомат</p>
+        </div>
+        <div class="hero-info-item">
+          <h4>Оплата</h4>
+          <p><strong>Рассрочка от банка</strong><br>Без переплат и первого взноса</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="container">
+    <div class="section-head reveal">
+      <h2>Прайс-лист</h2>
+      <p>Работаем в Гомеле и области. Цены в BYN, финальная стоимость — после осмотра.</p>
+    </div>
+
+    <div class="receipts">
+
+      <div class="receipt reveal">
+        <div class="receipt-body">
+          <div class="receipt-header">
+            <div class="receipt-brand">Rem<span>Stroy</span></div>
+            <div class="receipt-sub">г. Гомель</div>
+            <div class="receipt-num">№ 01 · 2026</div>
+          </div>
+          <div class="receipt-title">Монтаж точек и приборов</div>
+          <hr class="receipt-divider">
+          <div class="receipt-cols"><span>Наименование</span><span>BYN</span></div>
+          <ul class="receipt-items">
+            <li><span class="item-name">Розетка под ключ (бетон)<small>шт.</small></span><span class="item-cost">от 27</span></li>
+            <li><span class="item-name">Розетка под ключ (кирпич)<small>шт.</small></span><span class="item-cost">от 22</span></li>
+            <li><span class="item-name">Выключатель под ключ (бетон)<small>шт.</small></span><span class="item-cost">от 27</span></li>
+            <li><span class="item-name">Выключатель под ключ (кирпич)<small>шт.</small></span><span class="item-cost">от 22</span></li>
+            <li><span class="item-name">Установка розетки / выключателя<small>шт.</small></span><span class="item-cost">от 10</span></li>
+            <li><span class="item-name">Розетка для электроплиты<small>шт.</small></span><span class="item-cost">от 15</span></li>
+            <li><span class="item-name">Монтаж подрозетника<small>шт.</small></span><span class="item-cost">от 2</span></li>
+            <li><span class="item-name">Высверливание в ПГС<small>шт.</small></span><span class="item-cost">от 8</span></li>
+            <li><span class="item-name">Высверливание в бетоне<small>шт.</small></span><span class="item-cost">от 15</span></li>
+            <li><span class="item-name">Высверливание в кирпиче<small>шт.</small></span><span class="item-cost">от 10</span></li>
+          </ul>
+          <div class="receipt-barcode"></div>
+          <div class="receipt-barcode-num">2026&nbsp;0001&nbsp;0001</div>
+          <div class="receipt-footer">спасибо за доверие</div>
+        </div>
+      </div>
+
+      <div class="receipt reveal reveal-delay-1">
+        <div class="receipt-body">
+          <div class="receipt-header">
+            <div class="receipt-brand">Rem<span>Stroy</span></div>
+            <div class="receipt-sub">г. Гомель</div>
+            <div class="receipt-num">№ 02 · 2026</div>
+          </div>
+          <div class="receipt-title">Прокладка кабеля, штробление</div>
+          <hr class="receipt-divider">
+          <div class="receipt-cols"><span>Наименование</span><span>BYN</span></div>
+          <ul class="receipt-items">
+            <li><span class="item-name">Прокладка кабеля с крепежом<small>м.п.</small></span><span class="item-cost">от 2</span></li>
+            <li><span class="item-name">Разводка в гофре<small>м.п.</small></span><span class="item-cost">от 2</span></li>
+            <li><span class="item-name">Штробление в газосиликате<small>м.п.</small></span><span class="item-cost">от 6</span></li>
+            <li><span class="item-name">Штробление в бетоне<small>м.п.</small></span><span class="item-cost">от 10</span></li>
+            <li><span class="item-name">Штробление в кирпиче<small>м.п.</small></span><span class="item-cost">от 10</span></li>
+            <li><span class="item-name">Монтаж гофры на клипсы<small>м.п.</small></span><span class="item-cost">от 3</span></li>
+            <li><span class="item-name">Монтаж кабель-канала + кабель<small>м.п.</small></span><span class="item-cost">от 9</span></li>
+            <li><span class="item-name">Протяжка кабеля в нише<small>м.п.</small></span><span class="item-cost">от 5</span></li>
+            <li><span class="item-name">Замазывание штроб<small>м.п.</small></span><span class="item-cost">от 5</span></li>
+          </ul>
+          <div class="receipt-barcode"></div>
+          <div class="receipt-barcode-num">2026&nbsp;0002&nbsp;0002</div>
+          <div class="receipt-footer">спасибо за доверие</div>
+        </div>
+      </div>
+
+      <div class="receipt reveal reveal-delay-2">
+        <div class="receipt-body">
+          <div class="receipt-header">
+            <div class="receipt-brand">Rem<span>Stroy</span></div>
+            <div class="receipt-sub">г. Гомель</div>
+            <div class="receipt-num">№ 03 · 2026</div>
+          </div>
+          <div class="receipt-title">Электрощиты</div>
+          <hr class="receipt-divider">
+          <div class="receipt-cols"><span>Наименование</span><span>BYN</span></div>
+          <ul class="receipt-items">
+            <li><span class="item-name">Ниша в газосиликате<small>шт.</small></span><span class="item-cost">от 40</span></li>
+            <li><span class="item-name">Ниша в бетоне / кирпиче<small>шт.</small></span><span class="item-cost">от 70</span></li>
+            <li><span class="item-name">Монтаж корпуса в нишу<small>шт.</small></span><span class="item-cost">от 15</span></li>
+            <li><span class="item-name">Установка автомата<small>шт.</small></span><span class="item-cost">от 8</span></li>
+            <li><span class="item-name">Реле напряжения<small>шт.</small></span><span class="item-cost">от 18</span></li>
+            <li><span class="item-name">Дифавтомат / УЗО<small>шт.</small></span><span class="item-cost">от 12</span></li>
+          </ul>
+          <div class="receipt-barcode"></div>
+          <div class="receipt-barcode-num">2026&nbsp;0003&nbsp;0003</div>
+          <div class="receipt-footer">спасибо за доверие</div>
+        </div>
+      </div>
+
+      <div class="receipt reveal">
+        <div class="receipt-body">
+          <div class="receipt-header">
+            <div class="receipt-brand">Rem<span>Stroy</span></div>
+            <div class="receipt-sub">г. Гомель</div>
+            <div class="receipt-num">№ 04 · 2026</div>
+          </div>
+          <div class="receipt-title">Тёплый пол</div>
+          <hr class="receipt-divider">
+          <div class="receipt-cols"><span>Наименование</span><span>BYN</span></div>
+          <ul class="receipt-items">
+            <li><span class="item-name">Инфракрасная плёнка под ключ<small>м²</small></span><span class="item-cost">от 20</span></li>
+            <li><span class="item-name">Кабель в стяжку под ключ<small>м²</small></span><span class="item-cost">от 26</span></li>
+            <li><span class="item-name">Нагревательные маты под ключ<small>м²</small></span><span class="item-cost">от 33</span></li>
+            <li><span class="item-name">Инфракрасная плёнка (работа)<small>м²</small></span><span class="item-cost">от 12</span></li>
+            <li><span class="item-name">Кабель в стяжку (работа)<small>м²</small></span><span class="item-cost">от 18</span></li>
+            <li><span class="item-name">Нагревательные маты (работа)<small>м²</small></span><span class="item-cost">от 25</span></li>
+            <li><span class="item-name">Терморегулятор<small>шт.</small></span><span class="item-cost">от 20</span></li>
+            <li><span class="item-name">Укладка подложки<small>м²</small></span><span class="item-cost">от 5</span></li>
+            <li><span class="item-name">Датчик температуры<small>шт.</small></span><span class="item-cost">от 12</span></li>
+            <li><span class="item-name">Клеммы и изоляция<small>шт.</small></span><span class="item-cost">от 1</span></li>
+            <li><span class="item-name">Гидроизоляция<small>м²</small></span><span class="item-cost">от 3</span></li>
+          </ul>
+          <div class="receipt-barcode"></div>
+          <div class="receipt-barcode-num">2026&nbsp;0004&nbsp;0004</div>
+          <div class="receipt-footer">спасибо за доверие</div>
+        </div>
+      </div>
+
+      <div class="receipt reveal reveal-delay-1">
+        <div class="receipt-body">
+          <div class="receipt-header">
+            <div class="receipt-brand">Rem<span>Stroy</span></div>
+            <div class="receipt-sub">г. Гомель</div>
+            <div class="receipt-num">№ 05 · 2026</div>
+          </div>
+          <div class="receipt-title">Освещение</div>
+          <hr class="receipt-divider">
+          <div class="receipt-cols"><span>Наименование</span><span>BYN</span></div>
+          <ul class="receipt-items">
+            <li><span class="item-name">Установка люстры или бра<small>шт.</small></span><span class="item-cost">от 15</span></li>
+            <li><span class="item-name">Точечный светильник<small>шт.</small></span><span class="item-cost">от 10</span></li>
+            <li><span class="item-name">LED-подсветка<small>м.п.</small></span><span class="item-cost">от 5</span></li>
+            <li><span class="item-name">Установка выключателя<small>шт.</small></span><span class="item-cost">от 10</span></li>
+            <li><span class="item-name">Линейный светильник<small>шт.</small></span><span class="item-cost">от 30</span></li>
+            <li><span class="item-name">Светодиодная панель<small>шт.</small></span><span class="item-cost">от 20</span></li>
+          </ul>
+          <div class="receipt-barcode"></div>
+          <div class="receipt-barcode-num">2026&nbsp;0005&nbsp;0005</div>
+          <div class="receipt-footer">спасибо за доверие</div>
+        </div>
+      </div>
+
+      <div class="receipt reveal reveal-delay-2">
+        <div class="receipt-body">
+          <div class="receipt-header">
+            <div class="receipt-brand">Rem<span>Stroy</span></div>
+            <div class="receipt-sub">г. Гомель</div>
+            <div class="receipt-num">№ 06 · 2026</div>
+          </div>
+          <div class="receipt-title">Дополнительно</div>
+          <hr class="receipt-divider">
+          <div class="receipt-cols"><span>Наименование</span><span>BYN</span></div>
+          <ul class="receipt-items">
+            <li><span class="item-name">Подключение техники<small>шт.</small></span><span class="item-cost">от 15</span></li>
+            <li><span class="item-name">Диагностика / поиск неисправностей<small>—</small></span><span class="item-cost">от 30</span></li>
+          </ul>
+          <div class="receipt-barcode"></div>
+          <div class="receipt-barcode-num">2026&nbsp;0006&nbsp;0006</div>
+          <div class="receipt-footer">спасибо за доверие</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ОТЗЫВЫ -->
+<section class="reviews" id="reviews">
+  <div class="container">
+    <div class="section-head reveal">
+      <h2>Отзывы клиентов</h2>
+      <div class="section-head-right">
+        <p>Нам доверяют жители Гомеля и области</p>
+        <button type="button" class="btn-review" id="openReviewBtn">Оставить отзыв</button>
+      </div>
+    </div>
+    <!-- Здесь был блок с отзывами, но раз вы просили их убрать, оставляем только кнопку -->
+    <div style="padding: 40px; text-align: center; border: 1px dashed #333; color: #a1a1aa; margin-top: 20px;">
+      Отзывы появятся здесь после проверки.
+    </div>
+  </div>
+</section>
+
+<!-- CONDITIONS -->
+<section id="conditions">
+  <div class="container">
+    <div class="section-head reveal">
+      <h2>Условия работы</h2>
+      <p>Прозрачно и без скрытых доплат</p>
+    </div>
+
+    <div class="conditions-grid">
+      <div class="condition accent reveal">
+        <div class="condition-num">01 / Комплекс</div>
+        <h4>Комплексные работы</h4>
+        <p>Квартира, дом, офис — комплексный монтаж, замена проводки, сборка щита. Консультация и замеры бесплатно.</p>
+        <div class="condition-price">Бесплатно</div>
+      </div>
+
+      <div class="condition reveal reveal-delay-1">
+        <div class="condition-num">02 / Разово</div>
+        <h4>Разовые работы</h4>
+        <p>Вызов мастера на 1–2 небольшие задачи: установить розетку, повесить люстру, заменить автомат.</p>
+        <div class="condition-price">Выезд 30 BYN</div>
+      </div>
+
+      <div class="condition reveal reveal-delay-2">
+        <div class="condition-num">03 / Оплата</div>
+        <h4>Рассрочка от банка</h4>
+        <p>Оплачивайте работы частями — без переплат и первого взноса. Оформление прямо на месте.</p>
+        <div class="condition-price">Оплата частями</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ADVANTAGES -->
+<section class="advantages">
+  <div class="container">
+    <div class="section-head reveal">
+      <h2>Почему нас выбирают</h2>
+      <p>Работаем честно и качественно</p>
+    </div>
+    <div class="advantages-grid">
+      <div class="adv-item reveal">
+        <div class="adv-num">2<span>г</span></div>
+        <p>на рынке электромонтажа</p>
+      </div>
+      <div class="adv-item reveal reveal-delay-1">
+        <div class="adv-num">5<span>лет</span></div>
+        <p>гарантии на все виды работ</p>
+      </div>
+      <div class="adv-item reveal reveal-delay-2">
+        <div class="adv-num">8<span>–22</span></div>
+        <p>приём звонков ежедневно</p>
+      </div>
+      <div class="adv-item reveal reveal-delay-3">
+        <div class="adv-num">17<span>:00</span></div>
+        <p>выезд на консультации и замеры</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="container contact-grid">
+
+    <div class="contact-info reveal">
+      <h2>Оставьте заявку — перезвоним в течение 15 минут.</h2>
+      <p>Опишите задачу, и мы подберём оптимальное решение. Работаем в Гомеле и Гомельской области.</p>
+
+      <div class="contact-schedule">
+        <div>
+          <span>Приём звонков</span>
+          <span>8:00 – 22:00</span>
+        </div>
+        <div>
+          <span>Выезд на консультации и замеры</span>
+          <span>с 17:00</span>
+        </div>
+      </div>
+
+      <div class="contact-details">
+        <a href="tel:+375293629845">📞 +375 29 362-98-45 <small>life</small></a>
+        <a href="tel:+375256019816">📞 +375 25 601-98-16 <small>life</small></a>
+        <a href="mailto:kropkaoptimuma@gmail.com">✉️ kropkaoptimuma@gmail.com</a>
+      </div>
+    </div>
+
+    <form id="mainForm" onsubmit="submitMainForm(event)" class="reveal reveal-delay-1">
+      <div class="field">
+        <label for="name">Ваше имя</label>
+        <input type="text" id="name" name="name" placeholder="Иван" required>
+      </div>
+      <div class="field">
+        <label for="tel">Телефон</label>
+        <input type="tel" id="tel" name="tel" placeholder="+375 __ ___-__-__" value="+375 " required>
+      </div>
+      <div class="field">
+        <label for="task">Задача</label>
+        <textarea id="task" name="task" placeholder="Кратко опишите, что нужно сделать"></textarea>
+      </div>
+      <button type="submit" class="btn" id="mainSubmit">Отправить заявку</button>
+      <p class="form-note">Нажимая кнопку, вы соглашаетесь с обработкой персональных данных.</p>
+    </form>
+
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo">Rem<span>Stroy</span></div>
+        <p><strong>ЧТУП «Точка оптимума»</strong></p>
+        <p>УНП 491650192</p>
+        <p style="margin-top:14px;">г. Гомель · Электромонтажные работы</p>
+      </div>
+      <div class="footer-col">
+        <h5>Контакты</h5>
+        <a href="tel:+375293629845">+375 29 362-98-45 (life)</a>
+        <a href="tel:+375256019816">+375 25 601-98-16 (life)</a>
+        <a href="mailto:kropkaoptimuma@gmail.com">kropkaoptimuma@gmail.com</a>
+      </div>
+      <div class="footer-col">
+        <h5>Режим работы</h5>
+        <a href="#contact">Приём звонков: 8:00–22:00</a>
+        <a href="#contact">Выезд на замеры: с 17:00</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>© 2026 RemStroy · ЧТУП «Точка оптимума» · УНП 491650192</div>
+      <div>Все права защищены</div>
+    </div>
+  </div>
+</footer>
+
+<!-- МОДАЛЬНОЕ ОКНО ЗАЯВКИ -->
+<div class="modal-overlay" id="modalOverlay" onclick="if(event.target === this) closeModal()">
+  <div class="modal" role="dialog" aria-modal="true">
+    <button class="modal-close" onclick="closeModal()" aria-label="Закрыть">×</button>
+    <div class="modal-form" id="modalForm">
+      <div class="modal-eyebrow">Заявка · Гомель</div>
+      <h3>Вызвать электрика</h3>
+      <p>Оставьте контакты — перезвоним в течение 15 минут и подберём удобное время для выезда.</p>
+      <form id="modalFormEl" onsubmit="submitModal(event)">
+        <div class="field">
+          <label for="modal-name">Ваше имя</label>
+          <input type="text" id="modal-name" name="name" placeholder="Иван" required>
+        </div>
+        <div class="field">
+          <label for="modal-tel">Телефон</label>
+          <input type="tel" id="modal-tel" name="tel" placeholder="+375 __ ___-__-__" value="+375 " required>
+        </div>
+        <div class="field">
+          <label for="modal-task">Задача</label>
+          <textarea id="modal-task" name="task" placeholder="Например: установить 5 розеток"></textarea>
+        </div>
+        <button type="submit" class="btn" id="modalSubmit">Отправить заявку</button>
+        <p class="form-note">Нажимая кнопку, вы соглашаетесь с обработкой персональных данных.</p>
+      </form>
+    </div>
+    <div class="modal-success" id="modalSuccess">
+      <div class="check">✓</div>
+      <h3>Заявка отправлена</h3>
+      <p>Спасибо! Мы свяжемся с вами в течение 15 минут.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ПЛАВАЮЩИЕ КНОПКИ -->
+<div class="float-buttons" id="floatButtons">
+  <a href="https://t.me/+375256019816" target="_blank" rel="noopener" class="float-btn tg" aria-label="Telegram">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/></svg>
+    <span class="tooltip">Написать в Telegram</span>
+  </a>
+  <a href="viber://chat?number=%2B375256019816" class="float-btn viber" aria-label="Viber">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M11.4 0C9.473.028 5.333.344 3.02 2.467 1.302 4.187.696 6.7.633 9.817c-.06 3.11.077 6.03 1.845 7.99.8.85 2.14 1.41 3.61 1.61l-.35 2.11c-.03.17.06.35.2.42.05.03.11.04.17.04.11 0 .21-.05.28-.13l2.63-3.08c.51.02 1.02.02 1.53 0 1.92-.03 6.06-.35 8.37-2.47 1.72-1.72 2.32-4.23 2.39-7.35.06-3.11-.08-6.03-1.85-7.99C17.37.24 14.28.03 12.06 0c-.22 0-.44 0-.66.01zm.14 1.83c.19 0 .38 0 .57.01 1.96.03 4.28.28 5.51 1.64 1.35 1.5 1.48 4 1.42 6.72-.06 2.73-.59 4.79-1.87 6.07-1.94 1.79-5.61 2.02-7.06 2.05-.16 0-.32.01-.48.01h-.63l-.32.37-1.5 1.76.2-1.2.14-.83-.84-.1c-1.21-.15-2.21-.57-2.74-1.13-1.28-1.42-1.42-3.97-1.37-6.78.06-2.73.59-4.79 1.87-6.07C4.83 1.56 7.87 1.8 9.65 1.82c.63.01 1.26.01 1.89.01zm-.02 2.16c-.28 0-.51.23-.51.51 0 .28.23.51.51.51 1.55 0 2.81 1.27 2.81 2.82 0 .28.23.51.51.51.28 0 .51-.23.51-.51 0-2.12-1.72-3.84-3.84-3.84zm0 2.13c-.28 0-.51.23-.51.51 0 .28.23.51.51.51.39 0 .71.32.71.71 0 .28.23.51.51.51s.51-.23.51-.51c0-.96-.78-1.73-1.73-1.73zm-3.63.42c-.15 0-.31.05-.44.16l-1.05.85c-.62.5-.76 1.4-.34 2.06.6.94 1.31 1.81 2.11 2.61.81.81 1.69 1.52 2.63 2.11.67.42 1.56.28 2.06-.34l.85-1.05c.36-.45.26-1.11-.21-1.44l-1.42-1c-.38-.27-.9-.22-1.22.12l-.35.37c-.5-.25-.97-.56-1.4-.99-.43-.43-.74-.89-.99-1.4l.37-.35c.34-.32.4-.84.13-1.22l-1-1.42c-.21-.29-.54-.45-.88-.45-.13 0-.27.03-.4.09z"/></svg>
+    <span class="tooltip">Написать в Viber</span>
+  </a>
+  <button class="float-btn up" id="upBtn" onclick="scrollToTop()" aria-label="Наверх">
+    <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+    <span class="tooltip">Наверх</span>
+  </button>
+</div>
+
+<!-- Подключаем ваш файл скриптов -->
+<script src="script.js"></script>
+</body>
+</html>
