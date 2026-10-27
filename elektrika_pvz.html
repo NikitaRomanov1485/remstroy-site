@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Электрика для ПВЗ Wildberries и Ozon в Гомеле | RemStroy</title>
-<meta name="description" content="Монтаж электрики для пунктов выдачи заказов Wildberries и Ozon в Гомеле. Сборка щитов, освещение, подключение оборудования. Гарантия 5 лет.">
+<title>Электрика для ПВЗ (Wildberries, Ozon) в Гомеле — RemStroy</title>
+<meta name="description" content="Монтаж электрики для пунктов выдачи заказов в Гомеле. Подключение освещения, розеток, щитов для WB и Ozon. Работаем с юрлицами, соблюдаем сроки.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=JetBrains+Mono:wght@300;400;500;700&display=swap" rel="stylesheet">
@@ -18,19 +18,41 @@
       Rem<span>Stroy</span>
       <small>Электромонтаж · Гомель</small>
     </a>
-        <div class="header-right">
+    <nav>
+      <div class="dropdown">
+        <a href="index.html#services" class="dropdown-toggle">Услуги ▾</a>
+        <div class="dropdown-menu">
+          <a href="zamena-provodki.html">Замена проводки</a>
+          <a href="elektrika_pvz.html">Электрика для ПВЗ (ВБ, Озон)</a>
+          <a href="elektrika-garazh.html">Электрика в гараже</a>
+          <a href="#">Сборка щита (скоро)</a>
+          <a href="#">Тёплый пол (скоро)</a>
+        </div>
+      </div>
+      <a href="index.html#reviews">Отзывы</a>
+      <a href="index.html#conditions">Условия</a>
+      <a href="index.html#contact">Контакты</a>
+    </nav>
+    <div class="header-right">
       <div class="phone-group">
         <a href="tel:+375293629845" class="phone">+375 29 362-98-45 <small>life</small></a>
         <a href="tel:+375256019816" class="phone">+375 25 601-98-16 <small>life</small></a>
       </div>
-      <button class="btn-sm" onclick="window.location.href='index.html'">На главную</button>
+      <button class="btn-sm" onclick="openModal()">Заявка</button>
     </div>
   </div>
 </header>
 
 <div class="container">
-  <div class="breadcrumbs">
-    <a href="index.html">Главная</a> <span>›</span> Электрика для ПВЗ
+  <div class="breadcrumbs" style="display: flex; align-items: center; gap: 12px; padding: 24px 0 0;">
+    <a href="index.html" class="back-link" style="margin-right: 4px;">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width: 18px; height: 18px;">
+        <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+      </svg>
+    </a>
+    <a href="index.html">Главная</a>
+    <span>/</span>
+    <span>Электрика для ПВЗ</span>
   </div>
 </div>
 
@@ -63,6 +85,32 @@
 
 <section class="section">
   <div class="container">
+    <h2 class="section-title">Особенности электрики для ПВЗ</h2>
+    <p class="section-text">Пункт выдачи заказов — это не просто офис, а объект с высокой нагрузкой на сеть. Помимо освещения, здесь работают компьютеры, сканеры, принтеры, кондиционеры и камеры. Если сделать электрику «на глаз», при пиковой нагрузке выбьет автоматы или сгорит техника.</p>
+    
+    <div class="conditions-grid" style="margin-top: 32px;">
+      <div class="condition">
+        <h3>Расчёт мощности</h3>
+        <p>Мы заранее рассчитываем, сколько энергии потребляет все оборудование (кассовое, холодильник, кондиционеры), и подбираем кабель и автоматы с запасом.</p>
+      </div>
+      <div class="condition">
+        <h3>Выделенные линии</h3>
+        <p>На каждую группу розеток и на кондиционеры мы прокладываем отдельные линии. Это защищает от перегрузок и исключает полное отключение ПВЗ.</p>
+      </div>
+      <div class="condition">
+        <h3>Освещение по стандартам</h3>
+        <p>Для ПВЗ важна яркость и отсутствие теней (для сканеров). Мы монтируем LED-панели равномерно по потолку, подбираем нейтральную цветовую температуру (4000К).</p>
+      </div>
+      <div class="condition">
+        <h3>Соответствие требованиям</h3>
+        <p>Мы знаем требования Wildberries, Ozon и Яндекс.Маркета к электрике на ПВЗ и делаем так, чтобы при проверке не было претензий.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
     <h2 class="section-title">Цены на работы</h2>
     <p class="section-text">Цены указаны за работу. Стоимость материалов рассчитывается отдельно после замера.</p>
     
@@ -90,10 +138,10 @@
   <div class="container">
     <h2 class="section-title">Как мы работаем</h2>
     <div class="steps">
-      <div class="step"><div class="step-num">01</div><h4>Заявка</h4><p>Вы оставляете заявку или звоните.</p></div>
-      <div class="step"><div class="step-num">02</div><h4>Замер</h4><p>Приезжаем, оцениваем объем.</p></div>
-      <div class="step"><div class="step-num">03</div><h4>Смета</h4><p>Фиксируем стоимость в договоре.</p></div>
-      <div class="step"><div class="step-num">04</div><h4>Работа</h4><p>Монтируем и сдаем объект.</p></div>
+      <div class="step"><div class="step-num">01</div><h3>Заявка</h3><p>Вы оставляете заявку или звоните.</p></div>
+      <div class="step"><div class="step-num">02</div><h3>Замер</h3><p>Приезжаем, оцениваем объем.</p></div>
+      <div class="step"><div class="step-num">03</div><h3>Смета</h3><p>Фиксируем стоимость в договоре.</p></div>
+      <div class="step"><div class="step-num">04</div><h3>Работа</h3><p>Монтируем и сдаем объект.</p></div>
     </div>
   </div>
 </section>
@@ -101,89 +149,85 @@
 <section class="section">
   <div class="container">
     <h2 class="section-title">Частые вопросы</h2>
-    <div class="faq-item"><h4>Сколько времени занимает монтаж для ПВЗ?</h4><p>В среднем 2–5 дней в зависимости от площади и количества точек.</p></div>
-    <div class="faq-item"><h4>Делаете ли вы электрику под требования Wildberries / Ozon?</h4><p>Да, мы знаем требования брендов к освещению и розеткам для оборудования.</p></div>
-    <div class="faq-item"><h4>Даете ли документы?</h4><p>Да, работаем по договору строительного подряда.</p></div>
+    <div class="faq-item"><h3>Сколько времени занимает монтаж для ПВЗ?</h3><p>В среднем 2–5 дней в зависимости от площади и количества точек.</p></div>
+    <div class="faq-item"><h3>Делаете ли вы электрику под требования Wildberries / Ozon?</h3><p>Да, мы знаем требования брендов к освещению и розеткам для оборудования.</p></div>
+    <div class="faq-item"><h3>Даете ли документы?</h3><p>Да, работаем по договору строительного подряда.</p></div>
+  </div>
+</section>
+
+<!-- ФОРМА ЗАЯВКИ -->
+<section class="contact" id="contact" style="border-top: 1px solid var(--border);">
+  <div class="container contact-grid">
+    <div class="contact-info reveal">
+      <h2>Нужна электрика для ПВЗ?</h2>
+      <p>Оставьте заявку — перезвоним в течение 15 минут, ответим на вопросы и подберём удобное время для выезда. Работаем с Wildberries, Ozon и Яндекс.Маркет.</p>
+      <div class="contact-details" style="margin-top: 32px;">
+        <a href="tel:+375293629845">📞 +375 29 362-98-45 <small>life</small></a>
+        <a href="tel:+375256019816">📞 +375 25 601-98-16 <small>life</small></a>
+      </div>
+    </div>
+
+    <form id="mainForm" onsubmit="submitMainForm(event)" class="reveal reveal-delay-1">
+      <div class="field">
+        <label for="name">Ваше имя</label>
+        <input type="text" id="name" name="name" placeholder="Иван" required>
+      </div>
+      <div class="field">
+        <label for="tel">Телефон</label>
+        <input type="tel" id="tel" name="tel" placeholder="+375 __ ___-__-__" value="+375 " required>
+      </div>
+      <div class="field">
+        <label for="task">Задача</label>
+        <textarea id="task" name="task" placeholder="Опишите задачу: например, электрика для ПВЗ 30 кв.м"></textarea>
+      </div>
+      <button type="submit" class="btn" id="mainSubmit">Отправить заявку</button>
+      <p class="form-note">Нажимая кнопку, вы соглашаетесь с обработкой персональных данных.</p>
+    </form>
   </div>
 </section>
 
 <footer>
   <div class="container">
-    <p>© 2026 RemStroy · ЧТУП «Точка оптимума» · г. Гомель</p>
-    <p style="margin-top: 24px;"><a href="index.html" class="btn btn-outline">Вернуться на главную</a></p>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo">Rem<span>Stroy</span></div>
+        <p><strong>ЧТУП «Точка оптимума»</strong></p>
+        <p>УНП 491650192</p>
+        <p style="margin-top:14px;">г. Гомель · Электромонтажные работы</p>
+      </div>
+      <div class="footer-col">
+        <h5>Контакты</h5>
+        <a href="tel:+375293629845">+375 29 362-98-45 (life)</a>
+        <a href="tel:+375256019816">+375 25 601-98-16 (life)</a>
+        <a href="mailto:kropkaoptimuma@gmail.com">kropkaoptimuma@gmail.com</a>
+      </div>
+      <div class="footer-col">
+        <h5>Режим работы</h5>
+        <a href="index.html#contact">Приём звонков: 8:00–22:00</a>
+        <a href="index.html#contact">Выезд на замеры: с 17:00</a>
+      </div>
+    </div>
+    <div class="footer-bottom" style="flex-direction: column; align-items: flex-start; gap: 12px;">
+      <div>© 2026 RemStroy · ЧТУП «Точка оптимума» · УНП 491650192</div>
+      <div>Все права защищены</div>
+      <div style="margin-top: 12px;">
+         <a href="index.html" class="btn btn-outline" style="padding: 12px 24px; font-size: 12px;">Вернуться на главную</a>
+      </div>
+    </div>
   </div>
 </footer>
 
-<!-- ============ ПЛАВАЮЩИЕ КНОПКИ (встроенные стили) ============ -->
 <style>
-  .float-buttons {
-    position: fixed;
-    right: 24px;
-    bottom: 24px;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    z-index: 900;
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity .5s, transform .5s;
-    pointer-events: none;
-  }
-  .float-buttons.show {
-    opacity: 1;
-    transform: translateY(0);
-    pointer-events: auto;
-  }
-  .float-btn {
-    width: 54px;
-    height: 54px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-    color: #ffffff;
-    box-shadow: 0 8px 24px rgba(0,0,0,.5);
-    transition: transform .3s cubic-bezier(.2,.8,.2,1), box-shadow .3s;
-    position: relative;
-    border: none;
-    cursor: pointer;
-    background: transparent;
-  }
-  .float-btn:hover {
-    transform: scale(1.1) translateY(-2px);
-    box-shadow: 0 14px 32px rgba(0,0,0,.6);
-  }
-  .float-btn svg {
-    width: 26px;
-    height: 26px;
-    fill: currentColor;
-  }
+  .float-buttons { position: fixed; right: 24px; bottom: 24px; display: flex; flex-direction: column; gap: 12px; z-index: 900; opacity: 0; transform: translateY(20px); transition: opacity .5s, transform .5s; pointer-events: none; }
+  .float-buttons.show { opacity: 1; transform: translateY(0); pointer-events: auto; }
+  .float-btn { width: 54px; height: 54px; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; color: #ffffff; box-shadow: 0 8px 24px rgba(0,0,0,.5); transition: transform .3s cubic-bezier(.2,.8,.2,1), box-shadow .3s; position: relative; border: none; cursor: pointer; background: transparent; }
+  .float-btn:hover { transform: scale(1.1) translateY(-2px); box-shadow: 0 14px 32px rgba(0,0,0,.6); }
+  .float-btn svg { width: 26px; height: 26px; fill: currentColor; }
   .float-btn.tg { background: #229ED9; }
   .float-btn.viber { background: #7360F2; }
   .float-btn.up { background: #2e2e2e; }
-  .float-btn .tooltip {
-    position: absolute;
-    right: calc(100% + 12px);
-    top: 50%;
-    transform: translateY(-50%) translateX(8px);
-    background: #0a0a0a;
-    color: #ffffff;
-    font-size: 12px;
-    padding: 8px 14px;
-    border-radius: 6px;
-    white-space: nowrap;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity .25s, transform .25s;
-    font-family: 'DM Sans', sans-serif;
-    font-weight: 400;
-    border: 1px solid #2e2e2e;
-  }
-  .float-btn:hover .tooltip {
-    opacity: 1;
-    transform: translateY(-50%) translateX(0);
-  }
+  .float-btn .tooltip { position: absolute; right: calc(100% + 12px); top: 50%; transform: translateY(-50%) translateX(8px); background: #0a0a0a; color: #ffffff; font-size: 12px; padding: 8px 14px; border-radius: 6px; white-space: nowrap; opacity: 0; pointer-events: none; transition: opacity .25s, transform .25s; font-family: 'DM Sans', sans-serif; font-weight: 400; border: 1px solid #2e2e2e; }
+  .float-btn:hover .tooltip { opacity: 1; transform: translateY(-50%) translateX(0); }
   @media (max-width: 640px) {
     .float-buttons { right: 16px; bottom: 16px; gap: 10px; }
     .float-btn { width: 50px; height: 50px; }
@@ -195,6 +239,7 @@
   }
 </style>
 
+<!-- ПЛАВАЮЩИЕ КНОПКИ -->
 <div class="float-buttons" id="floatButtons">
   <a href="https://t.me/+375256019816" target="_blank" rel="noopener" class="float-btn tg" aria-label="Telegram">
     <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/></svg>
@@ -210,26 +255,7 @@
   </button>
 </div>
 
-<script>
-  const floatButtons = document.getElementById('floatButtons');
-  const scrollTopBtn = document.getElementById('scrollTopBtn');
-  const SCROLL_THRESHOLD = 300;
-
-  if (floatButtons) {
-    const toggleButtons = () => {
-      floatButtons.classList.toggle('show', window.scrollY > SCROLL_THRESHOLD);
-    };
-    toggleButtons();
-    window.addEventListener('scroll', toggleButtons, { passive: true });
-  }
-
-  if (scrollTopBtn) {
-    scrollTopBtn.addEventListener('click', () => {
-      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
-    });
-  }
-</script>
-
+<!-- ПОДКЛЮЧЕНИЕ СКРИПТОВ -->
+<script src="script.js"></script>
 </body>
 </html>
