@@ -478,21 +478,6 @@
         date: new Date().toISOString()
       };
 
-      // TODO: отправка на сервер
-      // fetch('/api/reviews', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify(data) })
-      fetch('/api/review.php', {
-  method: 'POST',
-  headers: { 'Content-Type': 'application/json' },
-  body: JSON.stringify(data)
-})
-  .then(r => r.ok ? r.json() : Promise.reject(r))
-  .then(() => {
-    formWrap.classList.add('hide');
-    success.classList.add('show');
-  })
-  .catch(() => alert('Не удалось отправить отзыв. Попробуйте позже.'));
-    });
-
     // снимаем подсветку при вводе
     form.querySelectorAll('input, textarea').forEach(el => {
       el.addEventListener('input', () => { el.style.borderBottomColor = ''; });
