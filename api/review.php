@@ -15,19 +15,7 @@ $TG_CHAT_ID = getenv('TG_CHAT_ID') ?: '7310945290';
 }
 
 // Ограничение размера тела (защита от мусора)
-$raw = file_get_contents('php://input');
-if ($raw === false || strlen($raw) > 20000) {
-    http_response_code(413);
-    echo '{"ok":false,"error":"payload_too_large"}';
-    exit;
-}
-
-$data = json_decode($raw, true);
-if (!is_array($data)) {
-    http_response_code(400);
-    echo '{"ok":false,"error":"bad_json"}';
-    exit;
-}
+$data = $_POST;
 
 // Простой rate-limit: не более 3 отзывов с IP за 10 минут
 $ip = $_SERVER['REMOTE_ADDR'] ?? 'unknown';
