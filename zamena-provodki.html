@@ -8,28 +8,29 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=JetBrains+Mono:wght@300;400;500;700&display=swap" rel="stylesheet">
-<!-- Подключаем ваш общий файл стилей. Путь ../style.css означает "выйти из папки uslugi" -->
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <header>
   <div class="container header-inner">
-    <!-- Ссылка на главную страницу из папки uslugi -->
     <a href="index.html" class="logo">
       Rem<span>Stroy</span>
       <small>Электромонтаж · Гомель</small>
     </a>
-    <div class="header-right">
-      <a href="tel:+375293629845" class="phone">+375 29 362-98-45</a>
-      <button class="btn-sm" onclick="window.location.href='../index.html'">На главную</button>
+        <div class="header-right">
+      <div class="phone-group">
+        <a href="tel:+375293629845" class="phone">+375 29 362-98-45 <small>life</small></a>
+        <a href="tel:+375256019816" class="phone">+375 25 601-98-16 <small>life</small></a>
+      </div>
+      <button class="btn-sm" onclick="window.location.href='index.html'">На главную</button>
     </div>
   </div>
 </header>
 
 <div class="container">
   <div class="breadcrumbs">
-    <a href="../index.html">Главная</a> <span>›</span> <a href="#">Услуги</a> <span>›</span> Замена проводки
+    <a href="index.html">Главная</a> <span>›</span> Замена проводки
   </div>
 </div>
 
@@ -38,9 +39,8 @@
     <h1>Замена проводки в Гомеле <em>под ключ</em></h1>
     <p class="hero-sub">Полностью меняем старую алюминиевую или медную проводку на новую. Работаем по проекту, с гарантией 5 лет и фиксированной сметой. Выезд на замеры — бесплатно.</p>
     <div class="hero-actions">
-      <!-- Ведем на главную страницу к форме -->
-      <a href="../index.html#contact" class="btn">Вызвать замерщика</a>
-      <a href="tel:+375293629845" class="btn" style="background: transparent; color: var(--text); border-color: var(--border-strong);">Позвонить</a>
+      <a href="index.html#contact" class="btn">Вызвать замерщика</a>
+      <a href="tel:+375293629845" class="btn btn-outline">Позвонить</a>
     </div>
   </div>
 </section>
@@ -54,7 +54,7 @@
       <li>Дому больше 20–30 лет, проводка алюминиевая</li>
       <li>Делаете капитальный ремонт с нуля</li>
       <li>Часто выбивает автоматы или греются розетки</li>
-      <li>Планируете подключать мощную технику (бойлер, плиту, кондиционер)</li>
+      <li>Планируете подключать мощную технику</li>
       <li>Хотите установить УЗО и современные автоматы</li>
       <li>Нужно вывести отдельные линии на каждую комнату</li>
     </ul>
@@ -64,7 +64,7 @@
 <section class="section">
   <div class="container">
     <h2 class="section-title">Цены на замену проводки</h2>
-    <p class="section-text">Цены указаны за работу. Стоимость материалов рассчитывается отдельно после замера. Ниже — основные позиции, которые входят в комплексную замену проводки.</p>
+    <p class="section-text">Цены указаны за работу. Стоимость материалов рассчитывается отдельно после замера.</p>
     
     <table class="price-table">
       <thead>
@@ -75,44 +75,15 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>Демонтаж старой проводки</td>
-          <td>м.п.</td>
-          <td>от 3 BYN</td>
-        </tr>
-        <tr>
-          <td>Штробление стен в бетоне</td>
-          <td>м.п.</td>
-          <td>от 10 BYN</td>
-        </tr>
-        <tr>
-          <td>Штробление стен в кирпиче</td>
-          <td>м.п.</td>
-          <td>от 10 BYN</td>
-        </tr>
-        <tr>
-          <td>Прокладка кабеля с крепежом</td>
-          <td>м.п.</td>
-          <td>от 2 BYN</td>
-        </tr>
-        <tr>
-          <td>Установка розетки / выключателя</td>
-          <td>шт.</td>
-          <td>от 10 BYN</td>
-        </tr>
-        <tr>
-          <td>Установка автомата</td>
-          <td>шт.</td>
-          <td>от 8 BYN</td>
-        </tr>
-        <tr>
-          <td>Замазывание штроб</td>
-          <td>м.п.</td>
-          <td>от 5 BYN</td>
-        </tr>
+        <tr><td>Демонтаж старой проводки</td><td>м.п.</td><td>от 3 BYN</td></tr>
+        <tr><td>Штробление стен в бетоне</td><td>м.п.</td><td>от 10 BYN</td></tr>
+        <tr><td>Штробление стен в кирпиче</td><td>м.п.</td><td>от 10 BYN</td></tr>
+        <tr><td>Прокладка кабеля с крепежом</td><td>м.п.</td><td>от 2 BYN</td></tr>
+        <tr><td>Установка розетки / выключателя</td><td>шт.</td><td>от 10 BYN</td></tr>
+        <tr><td>Установка автомата</td><td>шт.</td><td>от 8 BYN</td></tr>
+        <tr><td>Замазывание штроб</td><td>м.п.</td><td>от 5 BYN</td></tr>
       </tbody>
     </table>
-    <p style="margin-top: 24px; font-size: 13px; color: var(--text-muted);">* Точная стоимость зависит от площади, количества точек и материалов.</p>
   </div>
 </section>
 
@@ -120,26 +91,10 @@
   <div class="container">
     <h2 class="section-title">Как мы работаем</h2>
     <div class="steps">
-      <div class="step">
-        <div class="step-num">01</div>
-        <h4>Заявка</h4>
-        <p>Вы оставляете заявку на сайте или звоните. Мы уточняем детали по телефону.</p>
-      </div>
-      <div class="step">
-        <div class="step-num">02</div>
-        <h4>Замер</h4>
-        <p>Приезжаем на объект, оцениваем объем работ и делаем замеры.</p>
-      </div>
-      <div class="step">
-        <div class="step-num">03</div>
-        <h4>Смета</h4>
-        <p>Фиксируем стоимость в договоре. Никаких скрытых доплат в процессе.</p>
-      </div>
-      <div class="step">
-        <div class="step-num">04</div>
-        <h4>Работа</h4>
-        <p>Выполняем монтаж, убираем мусор и сдаем объект. Даем гарантию 5 лет.</p>
-      </div>
+      <div class="step"><div class="step-num">01</div><h4>Заявка</h4><p>Вы оставляете заявку или звоните.</p></div>
+      <div class="step"><div class="step-num">02</div><h4>Замер</h4><p>Приезжаем, оцениваем объем.</p></div>
+      <div class="step"><div class="step-num">03</div><h4>Смета</h4><p>Фиксируем стоимость в договоре.</p></div>
+      <div class="step"><div class="step-num">04</div><h4>Работа</h4><p>Монтируем и сдаем объект.</p></div>
     </div>
   </div>
 </section>
@@ -147,35 +102,135 @@
 <section class="section">
   <div class="container">
     <h2 class="section-title">Частые вопросы</h2>
-    
-    <div class="faq-item">
-      <h4>Сколько времени занимает замена проводки в квартире?</h4>
-      <p>В среднем 3–7 дней в зависимости от площади и сложности. Если нужна штробка бетонных стен — может занять чуть больше.</p>
-    </div>
-    
-    <div class="faq-item">
-      <h4>Можно ли жить в квартире во время замены?</h4>
-      <p>Лучше освободить помещение на время штробления. Если такой возможности нет — мы разбиваем работу на этапы (по комнатам), чтобы минимизировать неудобства.</p>
-    </div>
-    
-    <div class="faq-item">
-      <h4>Входят ли материалы в стоимость?</h4>
-      <p>Нет, цена на сайте указана за работу. Кабель, автоматы, розетки и щиты покупаются отдельно. Мы можем составить список материалов с рекомендациями.</p>
-    </div>
-    
-    <div class="faq-item">
-      <h4>Даете ли документы на работы?</h4>
-      <p>Да. Мы работаем по договору с ЧТУП «Точка оптимума» (УНП 491650192). После сдачи объекта вы получаете акт и гарантийный талон на 5 лет.</p>
-    </div>
+    <div class="faq-item"><h4>Сколько времени занимает замена проводки?</h4><p>В среднем 3–7 дней в зависимости от площади и сложности.</p></div>
+    <div class="faq-item"><h4>Входят ли материалы в стоимость?</h4><p>Нет, кабель и автоматы покупаются отдельно.</p></div>
+    <div class="faq-item"><h4>Даете ли документы?</h4><p>Да, работаем по договору строительного подряда.</p></div>
   </div>
 </section>
 
 <footer>
   <div class="container">
     <p>© 2026 RemStroy · ЧТУП «Точка оптимума» · г. Гомель</p>
-    <p style="margin-top: 8px;"><a href="../index.html">Вернуться на главную</a></p>
+    <p style="margin-top: 8px;"><a href="index.html">Вернуться на главную</a></p>
   </div>
 </footer>
+
+<!-- ============ ПЛАВАЮЩИЕ КНОПКИ (встроенные стили) ============ -->
+<style>
+  .float-buttons {
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    z-index: 900;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity .5s, transform .5s;
+    pointer-events: none;
+  }
+  .float-buttons.show {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+  .float-btn {
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: #ffffff;
+    box-shadow: 0 8px 24px rgba(0,0,0,.5);
+    transition: transform .3s cubic-bezier(.2,.8,.2,1), box-shadow .3s;
+    position: relative;
+    border: none;
+    cursor: pointer;
+    background: transparent;
+  }
+  .float-btn:hover {
+    transform: scale(1.1) translateY(-2px);
+    box-shadow: 0 14px 32px rgba(0,0,0,.6);
+  }
+  .float-btn svg {
+    width: 26px;
+    height: 26px;
+    fill: currentColor;
+  }
+  .float-btn.tg { background: #229ED9; }
+  .float-btn.viber { background: #7360F2; }
+  .float-btn.up { background: #2e2e2e; }
+  .float-btn .tooltip {
+    position: absolute;
+    right: calc(100% + 12px);
+    top: 50%;
+    transform: translateY(-50%) translateX(8px);
+    background: #0a0a0a;
+    color: #ffffff;
+    font-size: 12px;
+    padding: 8px 14px;
+    border-radius: 6px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .25s, transform .25s;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 400;
+    border: 1px solid #2e2e2e;
+  }
+  .float-btn:hover .tooltip {
+    opacity: 1;
+    transform: translateY(-50%) translateX(0);
+  }
+  @media (max-width: 640px) {
+    .float-buttons { right: 16px; bottom: 16px; gap: 10px; }
+    .float-btn { width: 50px; height: 50px; }
+    .float-btn svg { width: 22px; height: 22px; }
+    .float-btn .tooltip { display: none; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .float-buttons, .float-btn, .float-btn .tooltip { transition: none; }
+  }
+</style>
+
+<div class="float-buttons" id="floatButtons">
+  <a href="https://t.me/+375256019816" target="_blank" rel="noopener" class="float-btn tg" aria-label="Telegram">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/></svg>
+    <span class="tooltip">Написать в Telegram</span>
+  </a>
+  <a href="viber://chat?number=%2B375256019816" class="float-btn viber" aria-label="Viber">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M11.4 0C9.473.028 5.333.344 3.02 2.467 1.302 4.187.696 6.7.633 9.817c-.06 3.11.077 6.03 1.845 7.99.8.85 2.14 1.41 3.61 1.61l-.35 2.11c-.03.17.06.35.2.42.05.03.11.04.17.04.11 0 .21-.05.28-.13l2.63-3.08c.51.02 1.02.02 1.53 0 1.92-.03 6.06-.35 8.37-2.47 1.72-1.72 2.32-4.23 2.39-7.35.06-3.11-.08-6.03-1.85-7.99C17.37.24 14.28.03 12.06 0c-.22 0-.44 0-.66.01zm.14 1.83c.19 0 .38 0 .57.01 1.96.03 4.28.28 5.51 1.64 1.35 1.5 1.48 4 1.42 6.72-.06 2.73-.59 4.79-1.87 6.07-1.94 1.79-5.61 2.02-7.06 2.05-.16 0-.32.01-.48.01h-.63l-.32.37-1.5 1.76.2-1.2.14-.83-.84-.1c-1.21-.15-2.21-.57-2.74-1.13-1.28-1.42-1.42-3.97-1.37-6.78.06-2.73.59-4.79 1.87-6.07C4.83 1.56 7.87 1.8 9.65 1.82c.63.01 1.26.01 1.89.01zm-.02 2.16c-.28 0-.51.23-.51.51 0 .28.23.51.51.51 1.55 0 2.81 1.27 2.81 2.82 0 .28.23.51.51.51.28 0 .51-.23.51-.51 0-2.12-1.72-3.84-3.84-3.84zm0 2.13c-.28 0-.51.23-.51.51 0 .28.23.51.51.51.39 0 .71.32.71.71 0 .28.23.51.51.51s.51-.23.51-.51c0-.96-.78-1.73-1.73-1.73zm-3.63.42c-.15 0-.31.05-.44.16l-1.05.85c-.62.5-.76 1.4-.34 2.06.6.94 1.31 1.81 2.11 2.61.81.81 1.69 1.52 2.63 2.11.67.42 1.56.28 2.06-.34l.85-1.05c.36-.45.26-1.11-.21-1.44l-1.42-1c-.38-.27-.9-.22-1.22.12l-.35.37c-.5-.25-.97-.56-1.4-.99-.43-.43-.74-.89-.99-1.4l.37-.35c.34-.32.4-.84.13-1.22l-1-1.42c-.21-.29-.54-.45-.88-.45-.13 0-.27.03-.4.09z"/></svg>
+    <span class="tooltip">Написать в Viber</span>
+  </a>
+  <button type="button" class="float-btn up" id="scrollTopBtn" aria-label="Наверх">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 4l-8 8h5v8h6v-8h5z"/></svg>
+    <span class="tooltip">Наверх</span>
+  </button>
+</div>
+
+<script>
+  const floatButtons = document.getElementById('floatButtons');
+  const scrollTopBtn = document.getElementById('scrollTopBtn');
+  const SCROLL_THRESHOLD = 300;
+
+  if (floatButtons) {
+    const toggleButtons = () => {
+      floatButtons.classList.toggle('show', window.scrollY > SCROLL_THRESHOLD);
+    };
+    toggleButtons();
+    window.addEventListener('scroll', toggleButtons, { passive: true });
+  }
+
+  if (scrollTopBtn) {
+    scrollTopBtn.addEventListener('click', () => {
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
+    });
+  }
+</script>
 
 </body>
 </html>
