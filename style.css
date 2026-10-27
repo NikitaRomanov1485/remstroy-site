@@ -554,3 +554,34 @@ footer { background: var(--bg-soft); border-top: 1px solid var(--border); color:
   background: var(--bg-elevated, #1a1a1a);
   color: var(--accent, #f59e0b);
 }
+
+/* Кнопка "Назад" */
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-soft, #a1a1aa);
+  text-decoration: none;
+  transition: color 0.2s, transform 0.2s;
+  letter-spacing: 0.02em;
+  width: auto; /* Принудительно убираем растягивание на весь экран */
+  max-width: max-content; /* Еще одна страховка */
+}
+
+.back-link svg {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+  transition: transform 0.2s;
+  display: block; /* Убираем лишние отступы у SVG */
+}
+
+.back-link:hover {
+  color: var(--accent, #f59e0b);
+}
+
+.back-link:hover svg {
+  transform: translateX(-4px);
+}
