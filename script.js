@@ -24,22 +24,37 @@ function initPhoneMask(input) {
 }
 document.querySelectorAll('input[type="tel"]').forEach(initPhoneMask);
 
-// ============ ОТПРАВКА НА СЕРВЕР (PHP) ============
-async function sendToServer(formDataObj) {
-  try {
-    const formData = new URLSearchParams();
-    for (const key in formDataObj) {
-      formData.append(key, formDataObj[key]);
-    }
+// ============ ОТПРАВКА В TELEGRAM ============
+// Ваш токен и ID (восстановил ваши данные)
+const TG_TOKEN = '8979084313:AAH5LtdHYApK1mO-VWrUQhkbAtniUHkED_Y'; 
+const TG_CHAT_ID = '7310945290';
+
+function escapeHtml(str) {
+  if (!str) return '';
+  return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+
+async function sendToTelegram(name, phone, task, type) {
+  const title = type === 'Отзыв' ? 'Отзыв с сайта' : 'Новая заявка с сайта';
+  const icon = type === 'Отзыв' ? '📝' : '🔔';
+  
+  const text = icon + ' <b>' + title + '</b>\n\n' +
+    '👤 <b>Имя:</b> ' + escapeHtml(name) + '\n' +
+    '📞 <b>Телефон:</b> ' + escapeHtml(phone) + '\n' +
+    '📝 <b>Сообщение:</b> ' + escapeHtml(task || 'не указано') + '\n\n' +
+    '🕐 ' + new Date().toLocaleString('ru-RU');
     
-    const response = await fetch('api/review.php', {
+  const url = 'https://api.telegram.org/bot' + TG_TOKEN + '/sendMessage';
+  try {
+    const response = await fetch(url, {
       method: 'POST',
-      body: formData
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ chat_id: TG_CHAT_ID, text: text, parse_mode: 'HTML' })
     });
     return response.ok;
-  } catch (err) {
-    console.error('Ошибка отправки:', err);
-    return false;
+  } catch (err) { 
+    console.error('Ошибка TG:', err);
+    return false; 
   }
 }
 
@@ -59,13 +74,7 @@ async function submitMainForm(e) {
   btn.disabled = true;
   btn.textContent = 'Отправка...';
 
-  const ok = await sendToServer({ 
-    type: 'Заявка (основная форма)',
-    name: name, 
-    phone: phone, 
-    text: task 
-  });
-
+  const ok = await sendToTelegram(name, phone, task, 'Заявка');
   if (ok) {
     btn.textContent = '✓ Отправлено';
     form.reset();
@@ -114,13 +123,7 @@ async function submitModal(e) {
   btn.disabled = true;
   btn.textContent = 'Отправка...';
 
-  const ok = await sendToServer({ 
-    type: 'Заявка (модальное окно)',
-    name: name, 
-    phone: phone, 
-    text: task 
-  });
-
+  const ok = await sendToTelegram(name, phone, task, 'Заявка');
   if (ok) {
     formView.classList.add('hide');
     successView.classList.add('show');
@@ -142,7 +145,7 @@ document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape' && overlay && overlay.classList.contains('active')) closeModal();
 });
 
-// ============ ФОРМА ОТЗЫВОВ ============
+// ============ ФОРМА ОТЗЫВОВ (ЗВЕЗДЫ) ============
 (function initReviewForm() {
   const reviewModal = document.getElementById('reviewModal');
   const openBtn = document.getElementById('openReviewBtn');
@@ -223,6 +226,7 @@ document.addEventListener('keydown', (e) => {
 
     const name = document.getElementById('reviewName');
     const text = document.getElementById('reviewText');
+    const phoneInput = document.getElementById('reviewPhone');
 
     const mark = (el, valid) => {
       el.style.borderBottomColor = valid ? '' : 'var(--accent)';
@@ -246,14 +250,13 @@ document.addEventListener('keydown', (e) => {
     submitBtn.disabled = true;
     submitBtn.textContent = 'Отправка...';
 
-    const res = await sendToServer({
-      type: 'Отзыв',
-      name: name.value.trim(),
-      phone: document.getElementById('reviewPhone').value.trim(),
-      rating: rating,
-      text: text.value.trim(),
-      page: location.href
-    });
+    // Собираем текст для Telegram с учетом рейтинга
+    const reviewText = text.value.trim();
+    const reviewPhone = phoneInput.value.trim();
+    const starsStr = '★'.repeat(rating) + '☆'.repeat(5 - rating);
+    const fullText = `Оценка: ${starsStr} (${rating}/5)\n\nТекст: ${reviewText}`;
+
+    const res = await sendToTelegram(name.value.trim(), reviewPhone, fullText, 'Отзыв');
 
     if (res) {
       formWrap.classList.add('hide');
