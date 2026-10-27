@@ -141,13 +141,21 @@ nav a:hover::after { width: 100%; }
   color: var(--accent);
 }
 
-/* ============ HERO ============ */
+/* Основной стиль для ПК (оставляем как есть, можно чуть уменьшить) */
 .hero {
-  padding: 140px 0 120px;
+  padding: 60px 0 80px; /* Уменьшили со 140px до 100px */
   background: var(--bg);
   border-bottom: 1px solid var(--border);
   position: relative;
   overflow: hidden;
+}
+
+/* Для мобильных (найдите этот блок внизу style.css) */
+@media (max-width: 640px) {
+  .hero {
+    padding: 40px 0 56px; /* Уменьшили отступ сверху и снизу для телефонов */
+  }
+  /* ... остальные мобильные стили ... */
 }
 .hero::before {
   content: '';
@@ -165,7 +173,7 @@ nav a:hover::after { width: 100%; }
   letter-spacing: .22em;
   text-transform: uppercase;
   color: var(--accent);
-  margin-bottom: 32px;
+  margin-bottom: 16px;
   font-weight: 500;
   display: inline-flex;
   align-items: center;
