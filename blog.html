@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Блог и полезные статьи об электрике — RemStroy | Гомель</title>
+<meta name="description" content="Полезные статьи об электромонтаже: как защитить технику от скачков напряжения, как избежать перегрева проводки, советы по выбору автоматов.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=JetBrains+Mono:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <div class="container header-inner">
+    <a href="index.html" class="logo">Rem<span>Stroy</span><small>Электромонтаж · Гомель</small></a>
+    <nav>
+      <div class="dropdown">
+        <a href="index.html#services" class="dropdown-toggle">Услуги ▾</a>
+        <div class="dropdown-menu">
+          <a href="zamena-provodki.html">Замена проводки</a>
+          <a href="elektrika_pvz.html">Электрика для ПВЗ (ВБ, Озон)</a>
+          <a href="elektrika-garazh.html">Электрика в гараже</a>
+          <a href="elektrika-dacha.html">Электрика на даче</a>
+          <a href="elektrika-dom.html">Электрика в частном доме</a>
+          <a href="teply-pol.html">Тёплый пол</a>
+          <a href="sborka-schita.html">Сборка щита</a>
+          <a href="osveschenie.html">Монтаж освещения</a>
+        </div>
+      </div>
+      <a href="index.html#reviews">Отзывы</a>
+      <a href="index.html#conditions">Условия</a>
+      <a href="index.html#contact">Контакты</a>
+      <a href="blog.html">Полезное</a>
+    </nav>
+    <div class="header-right">
+      <div class="phone-group">
+        <a href="tel:+375293629845" class="phone">+375 29 362-98-45 <small>life</small></a>
+        <a href="tel:+375256019816" class="phone">+375 25 601-98-16 <small>life</small></a>
+      </div>
+      <button class="btn-sm" onclick="openModal()">Заявка</button>
+    </div>
+  </div>
+</header>
+
+<section class="hero" style="padding-top: 40px; padding-bottom: 80px;">
+  <div class="container">
+    <div class="hero-content">
+      <div class="breadcrumbs" style="display: flex; align-items: center; gap: 12px; margin-bottom: 32px;">
+        <a href="index.html" class="back-link" style="margin-right: 4px;"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width: 18px; height: 18px;"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg></a>
+        <a href="index.html">Главная</a><span>/</span><span>Полезное</span>
+      </div>
+      <h1>Полезные статьи <em>об электрике</em></h1>
+      <p class="hero-sub">Разбираем сложные темы простым языком. Узнайте, как защитить ваш дом от пожаров, а технику — от скачков напряжения. Советы от практикующих электриков.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="conditions-grid">
+      
+      <!-- СТАТЬЯ 1 -->
+      <a href="article-peregrev.html" class="condition" style="text-decoration: none; display: block;">
+        <h3 style="font-size: 20px;">Как избежать перегрева проводки и пожара?</h3>
+        <p>Почему греются розетки, чем опасны скрутки и как правильно рассчитать нагрузку, чтобы автоматы не выбивало.</p>
+        <div class="condition-price" style="border: none; color: var(--accent); font-size: 13px; padding-top: 10px;">Читать статью →</div>
+      </a>
+
+      <!-- СТАТЬЯ 2 -->
+      <a href="article-zashita-tehniki.html" class="condition" style="text-decoration: none; display: block;">
+        <h3 style="font-size: 20px;">Как обезопасить бытовую технику при скачках напряжения?</h3>
+        <p>Что делать, если в сети прыгает напряжение (от 180 до 260В)? Разбираем реле напряжения, стабилизаторы и УЗО.</p>
+        <div class="condition-price" style="border: none; color: var(--accent); font-size: 13px; padding-top: 10px;">Читать статью →</div>
+      </a>
+      
+      <!-- МЕСТО ДЛЯ БУДУЩИХ СТАТЕЙ -->
+      <div class="condition" style="opacity: 0.5; border-style: dashed;">
+        <h3 style="font-size: 20px;">Как выбрать автомат для квартиры?</h3>
+        <p>Скоро: разбираем номиналы автоматов (C16, C25), бренды и типичные ошибки при сборке щита.</p>
+        <div class="condition-price" style="border: none; color: var(--text-muted); font-size: 13px; padding-top: 10px;">Скоро...</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- МОДАЛЬНОЕ ОКНО -->
+<div class="modal-overlay" id="modalOverlay" onclick="if(event.target === this) closeModal()">
+  <div class="modal" role="dialog" aria-modal="true">
+    <button class="modal-close" onclick="closeModal()">×</button>
+    <div class="modal-form" id="modalForm">
+      <div class="modal-eyebrow">Заявка · Гомель</div><h3>Вызвать электрика</h3><p>Оставьте контакты — перезвоним в течение 15 минут.</p>
+      <form id="modalFormEl" onsubmit="submitModal(event)">
+        <div class="field"><label>Ваше имя</label><input type="text" name="name" placeholder="Иван" required></div>
+        <div class="field"><label>Телефон</label><input type="tel" name="tel" placeholder="+375 __ ___-__-__" value="+375 " required></div>
+        <div class="field"><label>Задача</label><textarea name="task" placeholder="Опишите задачу"></textarea></div>
+        <button type="submit" class="btn" id="modalSubmit">Отправить заявку</button>
+      </form>
+    </div>
+    <div class="modal-success" id="modalSuccess"><div class="check">✓</div><h3>Заявка отправлена</h3><p>Спасибо! Мы свяжемся с вами в течение 15 минут.</p></div>
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand"><div class="footer-logo">Rem<span>Stroy</span></div><p><strong>ЧТУП «Точка оптимума»</strong></p><p>УНП 491650192</p><p style="margin-top:14px;">г. Гомель · Электромонтажные работы</p></div>
+      <div class="footer-col"><h5>Контакты</h5><a href="tel:+375293629845">+375 29 362-98-45 (life)</a><a href="tel:+375256019816">+375 25 601-98-16 (life)</a></div>
+      <div class="footer-col"><h5>Режим работы</h5><a href="index.html#contact">Приём звонков: 8:00–22:00</a><a href="index.html#contact">Выезд на замеры: с 17:00</a></div>
+    </div>
+    <div class="footer-bottom" style="flex-direction: column; align-items: flex-start; gap: 12px;">
+      <div>© 2026 RemStroy · УНП 491650192</div><div>Все права защищены</div>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
