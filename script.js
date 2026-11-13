@@ -7,7 +7,6 @@ function escapeHtml(str) {
   return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 }
 
-// Универсальная функция для отправки заявок
 async function sendToTelegram(name, phone, task) {
   const text = '🔔 <b>Новая заявка с сайта</b>\n\n' +
     '👤 <b>Имя:</b> ' + escapeHtml(name) + '\n' +
@@ -155,14 +154,14 @@ function initPhoneMask(input) {
 
 document.querySelectorAll('input[type="tel"]').forEach(initPhoneMask);
 
-// ============ ПЛАВАЮЩИЕ КНОПКИ ============
+// ============ ПЛАВАЮЩИЕ КНОПКИ (ВОТ ЧЕГО НЕ ХВАТАЛО) ============
 window.addEventListener('scroll', function() {
   const floatButtons = document.getElementById('floatButtons');
   const upBtn = document.getElementById('scrollTopBtn');
   const scrolled = window.scrollY;
   
   if (floatButtons) {
-    if (scrolled > 300) floatButtons.classList.add('show');
+    if (scrolled > 200) floatButtons.classList.add('show');
     else floatButtons.classList.remove('show');
   }
   if (upBtn) {
@@ -171,7 +170,18 @@ window.addEventListener('scroll', function() {
   }
 });
 
-// ============ ЛОГИКА ОТЗЫВОВ (звезды, фото, отправка) ============
+// Клик по кнопке "Наверх"
+document.addEventListener('DOMContentLoaded', function() {
+  const upBtn = document.getElementById('scrollTopBtn');
+  if (upBtn) {
+    upBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+});
+
+// ============ ЛОГИКА ОТЗЫВОВ ============
 document.addEventListener('DOMContentLoaded', function() {
   const reviewOverlay = document.getElementById('reviewOverlay');
   const openReviewBtn = document.getElementById('openReviewBtn');
@@ -189,7 +199,6 @@ document.addEventListener('DOMContentLoaded', function() {
   const filePreview = document.getElementById('filePreview');
   const fileUploadInfo = document.getElementById('fileUploadInfo');
 
-  // Открытие/закрытие модалки отзыва
   window.openReviewModal = function() {
     reviewOverlay.classList.add('active');
     document.body.classList.add('modal-open');
@@ -209,7 +218,6 @@ document.addEventListener('DOMContentLoaded', function() {
     if (e.target === reviewOverlay) window.closeReviewModal();
   });
 
-  // Логика звезд
   for (let s = 0; s < starButtons.length; s++) {
     starButtons[s].addEventListener('click', function() {
       const value = parseInt(this.getAttribute('data-value'));
@@ -224,7 +232,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
-  // Логика фото
   if (reviewPhotos) {
     reviewPhotos.addEventListener('change', function() {
       const files = this.files;
@@ -264,7 +271,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
-  // Отправка отзыва
   if (reviewFormEl) {
     reviewFormEl.addEventListener('submit', async function(e) {
       e.preventDefault();
@@ -300,7 +306,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 
         if (response.ok) {
-          // Отправка фото (если есть)
           for (let k = 0; k < selectedPhotos.length; k++) {
             const formData = new FormData();
             formData.append('chat_id', TG_CHAT_ID);
@@ -339,6 +344,29 @@ document.addEventListener('DOMContentLoaded', function() {
           reviewSubmit.disabled = false;
           reviewSubmit.textContent = 'Отправить';
         }
+      }
+    });
+  }
+});
+
+// ============ ПЕРЕКЛЮЧАТЕЛЬ ТЕМ ============
+window.addEventListener('load', function() {
+  const themeToggle = document.getElementById('themeToggle');
+  
+  const savedTheme = localStorage.getItem('theme');
+  if (savedTheme === 'light') {
+    document.body.classList.add('light-theme');
+  }
+
+  if (themeToggle) {
+    themeToggle.addEventListener('click', function(e) {
+      e.preventDefault();
+      document.body.classList.toggle('light-theme');
+      
+      if (document.body.classList.contains('light-theme')) {
+        localStorage.setItem('theme', 'light');
+      } else {
+        localStorage.setItem('theme', 'dark');
       }
     });
   }

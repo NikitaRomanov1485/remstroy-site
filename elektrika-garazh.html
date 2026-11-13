@@ -19,12 +19,14 @@
       Rem<span>Stroy</span>
       <small>Электромонтаж · Гомель</small>
     </a>
+    
     <nav>
+      <!-- Выпадающее меню Услуги -->
       <div class="dropdown">
-        <a href="index.html#services" class="dropdown-toggle">Услуги ▾</a>
+        <a href="#" class="dropdown-toggle">Услуги ▾</a>
         <div class="dropdown-menu">
           <a href="zamena-provodki.html">Замена проводки</a>
-          <a href="elektrika_pvz.html">Электрика для ПВЗ (ВБ, Озон)</a>
+          <a href="elektrika_pvz.html">Электрика для ПВЗ</a>
           <a href="elektrika-garazh.html">Электрика в гараже</a>
           <a href="elektrika-dacha.html">Электрика на даче</a>
           <a href="elektrika-dom.html">Электрика в частном доме</a>
@@ -33,49 +35,46 @@
           <a href="osveschenie.html">Монтаж освещения</a>
         </div>
       </div>
-      <a href="index.html#reviews">Отзывы</a>
-      <a href="index.html#conditions">Условия</a>
-      <a href="index.html#contact">Контакты</a>
+      
+      <!-- Условия (скролл вниз) -->
+      <a href="#process">Условия</a>
+      
+      <!-- Полезное (ссылка на блог) -->
       <a href="blog.html">Полезное</a>
+      
+      <!-- О нас -->
+      <a href="about.html">О нас</a>
     </nav>
+    
     <div class="header-right">
       <div class="phone-group">
         <a href="tel:+375293629845" class="phone">+375 29 362-98-45 <small>life</small></a>
         <a href="tel:+375256019816" class="phone">+375 25 601-98-16 <small>life</small></a>
       </div>
+      
+      <!-- Кнопка смены темы -->
+      <button class="theme-toggle" id="themeToggle" aria-label="Переключить тему">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 18C8.686 18 6 15.314 6 12C6 8.686 8.686 6 12 6C15.314 6 18 8.686 18 12C18 15.314 15.314 18 12 18ZM12 16C14.209 16 16 14.209 16 12C16 9.791 14.209 8 12 8C9.791 8 8 9.791 8 12C8 14.209 9.791 16 12 16ZM11 1H13V4H11V1ZM11 20H13V23H11V20ZM3.515 4.929L4.929 3.515L7.05 5.636L5.636 7.05L3.515 4.929ZM16.95 18.364L18.364 16.95L20.485 19.071L19.071 20.485L16.95 18.364ZM19.071 3.515L20.485 4.929L18.364 7.05L16.95 5.636L19.071 3.515ZM5.636 16.95L7.05 18.364L4.929 20.485L3.515 19.071L5.636 16.95ZM23 11V13H20V11H23ZM4 11V13H1V11H4Z"/></svg>
+      </button>
+      
       <button class="btn-sm" onclick="openModal()">Заявка</button>
     </div>
   </div>
 </header>
 
 <!-- ЗАГОЛОВОК -->
-<section class="hero" style="padding-top: 40px; padding-bottom: 80px;">
+<section class="hero-custom" style="--bg-image: url('https://images.unsplash.com/photo-1590959651373-a3db0f38a961?q=80&w=1600&auto=format&fit=crop');">
   <div class="container">
-    
-    <!-- Хлебные крошки -->
     <div class="breadcrumbs" style="display: flex; align-items: center; gap: 12px; margin-bottom: 32px;">
-      <a href="index.html" class="back-link" style="margin-right: 4px;">
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width: 18px; height: 18px;">
-          <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
-        </svg>
-      </a>
-      <a href="index.html">Главная</a>
-      <span>/</span>
-      <span>Электрика в гараже</span>
+      <a href="index.html" class="back-link" style="margin-right: 4px;"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width: 18px; height: 18px;"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg></a>
+      <a href="index.html">Главная</a><span>/</span><span>Электрика в гараже</span>
     </div>
-
-    <!-- Заголовок -->
     <h1>Электрика в гараже <em>под ключ</em></h1>
-    
-    <!-- Текст (вернули класс hero-sub) -->
-    <p class="hero-sub">Проведём свет, установим щиток, сделаем заземление и подключим силовое оборудование (сварочный аппарат, компрессор, подъёмник). Работаем в Гомеле и Гомельском районе, в кооперативах и частных гаражах. Даём гарантию 5 лет.</p>
-    
-    <!-- Кнопки -->
+    <p>Проведём свет, установим щиток, сделаем заземление и подключим силовое оборудование. Работаем в Гомеле и районе.</p>
     <div class="hero-actions">
       <button class="btn" onclick="openModal()">Заказать монтаж</button>
       <a href="#contact" class="btn btn-outline">Рассчитать стоимость</a>
     </div>
-    
   </div>
 </section>
 
@@ -138,14 +137,14 @@
         </tr>
       </thead>
       <tbody>
-        <tr><td>Прокладка кабеля открытым способом (в гофре/канале)</td><td>от 3 / м.п.</td></tr>
-        <tr><td>Штробление под кабель (бетон/кирпич)</td><td>от 10 / м.п.</td></tr>
-        <tr><td>Установка розетки (220В)</td><td>от 15 / шт.</td></tr>
-        <tr><td>Установка силовой розетки (380В)</td><td>от 25 / шт.</td></tr>
-        <tr><td>Сборка и монтаж щита (до 12 модулей)</td><td>от 80 / шт.</td></tr>
-        <tr><td>Монтаж светильника / прожектора</td><td>от 15 / шт.</td></tr>
-        <tr><td>Монтаж контура заземления (3 уголка)</td><td>от 120</td></tr>
-        <tr><td>Подключение сварочного аппарата / станка</td><td>от 40</td></tr>
+        <tr><td>Прокладка кабеля открытым способом (в гофре/канале)</td><td>от 1 / м.п.</td></tr>
+        <tr><td>Штробление под кабель (бетон/кирпич)</td><td>от 4 / м.п.</td></tr>
+        <tr><td>Установка розетки (220В)</td><td>от 5 / шт.</td></tr>
+        <tr><td>Установка силовой розетки (380В)</td><td>от 7 / шт.</td></tr>
+        <tr><td>Сборка и монтаж щита (до 12 модулей)</td><td>от 30 / шт.</td></tr>
+        <tr><td>Монтаж светильника / прожектора</td><td>от 5 / шт.</td></tr>
+        <tr><td>Монтаж контура заземления (3 уголка)</td><td>от 50</td></tr>
+        <tr><td>Подключение сварочного аппарата / станка</td><td>от 10</td></tr>
       </tbody>
     </table>
   </div>
@@ -176,7 +175,7 @@
 </section>
 
 <!-- ЭТАПЫ РАБОТ -->
-<section class="section">
+<section class="section" id="process">
   <div class="container">
     <h2 class="section-title">Как проходит работа</h2>
     <div class="steps">
@@ -273,7 +272,7 @@
       <div class="footer-col">
         <h5>Режим работы</h5>
         <a href="index.html#contact">Приём звонков: 8:00–22:00</a>
-        <a href="index.html#contact">Выезд на замеры: с 17:00</a>
+        <a href="index.html#contact">Выезд на замеры: с 10:00</a>
       </div>
     </div>
     <div class="footer-bottom" style="flex-direction: column; align-items: flex-start; gap: 12px;">
@@ -321,5 +320,6 @@
 
 <!-- ПОДКЛЮЧЕНИЕ СКРИПТОВ -->
 <script src="script.js"></script>
+
 </body>
 </html>

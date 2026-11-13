@@ -2,6 +2,7 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 :root {
+  /* Темная тема (по умолчанию) */
   --bg: #0a0a0a;
   --bg-soft: #101010;
   --bg-card: #151515;
@@ -17,6 +18,20 @@
   --viber: #7360F2;
 }
 
+/* Светлая тема (включается классом .light-theme на body) */
+body.light-theme {
+  --bg: #f8f9fa;
+  --bg-soft: #f1f3f5;
+  --bg-card: #ffffff;
+  --bg-elevated: #e9ecef;
+  --text: #121212;
+  --text-soft: #495057;
+  --text-muted: #868e96;
+  --border: #dee2e6;
+  --border-strong: #ced4da;
+  --paper: #ffffff;
+}
+
 html { scroll-behavior: smooth; }
 body {
   font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -26,6 +41,7 @@ body {
   -webkit-font-smoothing: antialiased;
   font-weight: 400;
   letter-spacing: -.005em;
+  transition: background 0.3s, color 0.3s;
 }
 body.modal-open { overflow: hidden; }
 
@@ -48,7 +64,7 @@ body.modal-open { overflow: hidden; }
 
 /* ============ ШАПКА ============ */
 header {
-  background: rgba(10, 10, 10, .85);
+  background: var(--bg-card); /* Вместо rgba(10, 10, 10, .85) */
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--border);
@@ -695,4 +711,123 @@ footer { background: var(--bg-soft); border-top: 1px solid var(--border); color:
 }
 @media (prefers-reduced-motion: reduce) {
   .float-buttons, .float-btn, .float-btn .tooltip { transition: none; }
+}
+
+/* Кнопка переключения темы */
+.theme-toggle {
+  background: transparent;
+  border: 1px solid var(--border-strong);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--text);
+  transition: all 0.3s;
+}
+.theme-toggle:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.theme-toggle svg {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+}
+
+  /* Фикс синего текста */
+  .split-half, .split-half:hover, .split-half:visited {
+    text-decoration: none;
+    color: var(--text);
+  }
+  .split-card h2 {
+    color: var(--text) !important;
+  }
+
+/* Кнопка переключения темы */
+.theme-toggle {
+  background: transparent;
+  border: 1px solid var(--border-strong);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--text);
+  transition: all 0.3s;
+  flex-shrink: 0;
+}
+.theme-toggle:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.theme-toggle svg {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+}
+
+/* ============ ФОНОВЫЕ КАРТИНКИ ДЛЯ HERO НА СТРАНИЦАХ ============ */
+.hero-custom {
+  position: relative;
+  padding: 80px 0 100px;
+  border-bottom: 1px solid var(--border);
+  overflow: hidden;
+}
+
+.hero-custom::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: var(--bg-image); /* <--- ВОТ ЭТА СТРОКА */
+  background-size: cover;
+  background-position: center;
+  z-index: 0;
+}
+
+.hero-custom::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, var(--bg) 0%, var(--bg) 50%, transparent 80%);
+  z-index: 1;
+}
+
+.hero-custom .container {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-custom h1 {
+  font-size: clamp(40px, 6vw, 80px);
+  font-weight: 700;
+  line-height: 1.02;
+  letter-spacing: -.035em;
+  max-width: 800px;
+  margin-bottom: 40px;
+  color: var(--text);
+}
+
+.hero-custom h1 em {
+  font-style: normal;
+  color: var(--accent);
+}
+
+.hero-custom p {
+  font-size: 18px;
+  color: var(--text-soft);
+  max-width: 620px;
+  line-height: 1.6;
+  font-weight: 300;
+  margin-bottom: 56px;
+}
+
+@media (max-width: 900px) {
+  .hero-custom::after {
+    background: linear-gradient(to bottom, var(--bg) 0%, var(--bg) 60%, transparent 100%);
+  }
 }
